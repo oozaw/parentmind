@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
@@ -55,6 +56,16 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1' // recycler view
     implementation 'androidx.cardview:cardview:1.0.0' // card view
     implementation 'com.github.bumptech.glide:glide:4.14.2' // glide
+
+    // firebase
+    implementation 'com.firebaseui:firebase-ui-database:8.0.0'
+    // realtime db
+    implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
+    // fcm
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.1.0'
+    // auth
+    implementation 'com.google.android.gms:play-services-auth:20.3.0'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
 
     // data store
     implementation "androidx.datastore:datastore-preferences:1.0.0"
