@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ParentMind</string>
+    <string name="firebase_auth_google">firebaseAuthWithGoogle: %1$s</string>
 </resources>
