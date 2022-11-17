@@ -4,10 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import com.capstone.parentmind.R
 import com.capstone.parentmind.databinding.ActivityLoginBinding
+import com.capstone.parentmind.utils.checkEmailPattern
 import com.capstone.parentmind.view.home.HomeActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -56,6 +59,7 @@ class LoginActivity : AppCompatActivity() {
       // Initialize Firebase Auth
       auth = Firebase.auth
 
+      setupView()
       setupAction()
    }
 
@@ -72,9 +76,14 @@ class LoginActivity : AppCompatActivity() {
    }
 
    private fun setupAction() {
-      binding.btnLogin.setOnClickListener {
+      binding.ivGoogleLogo.setOnClickListener {
          googleLogin()
       }
+   }
+
+   private fun setupView() {
+      checkEmailInput()
+      checkPasswordInput()
    }
 
    private fun googleLogin() {
@@ -103,6 +112,60 @@ class LoginActivity : AppCompatActivity() {
          startActivity(homeIntent)
          finish()
       }
+   }
+
+   private fun checkEmailInput() {
+      val inputLayout = binding.emailInputLayout
+      val editText = inputLayout.editText
+      editText?.addTextChangedListener(object: TextWatcher {
+         override fun beforeTextChanged(s: CharSequence?, start: Int, before: Int, after: Int) {
+
+         }
+
+         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, after: Int) {
+            if (checkEmailPattern(s.toString())) {
+               inputLayout.isErrorEnabled = false
+               inputLayout.error = null
+               setButtonStatus()
+            } else {
+               inputLayout.isErrorEnabled = true
+               inputLayout.error = getString(R.string.input_valid_email_error)
+               setButtonStatus()
+            }
+         }
+
+         override fun afterTextChanged(s: Editable?) {
+
+         }
+      })
+   }
+
+   private fun checkPasswordInput() {
+      val inputLayout = binding.passwordInputLayout
+      val editText = inputLayout.editText
+      editText?.addTextChangedListener(object: TextWatcher {
+         override fun beforeTextChanged(s: CharSequence?, start: Int, before: Int, after: Int) {
+
+         }
+
+         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, after: Int) {
+            setButtonStatus()
+         }
+
+         override fun afterTextChanged(s: Editable?) {
+
+         }
+      })
+   }
+
+   private fun setButtonStatus() {
+      val isInputEmailNull = binding.emailEditText.text.isNullOrEmpty()
+      val isEmailError = binding.emailInputLayout.isErrorEnabled
+      val isInputPasswordNull = binding.passwordEditText.text.isNullOrEmpty()
+      val isPasswordError = binding.passwordInputLayout.isErrorEnabled
+
+      binding.btnLogin.isEnabled =
+         (!isInputEmailNull && !isInputPasswordNull && !isEmailError && !isPasswordError)
    }
 
    companion object {

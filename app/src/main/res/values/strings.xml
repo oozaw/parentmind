@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">ParentMind</string>
     <string name="firebase_auth_google">firebaseAuthWithGoogle: %1$s</string>
+    <string name="selamat_datang">Selamat Datang!</string>
+    <string name="email">Email</string>
+    <string name="silakan_login">Silakan Login</string>
+    <string name="kata_sandi">Kata Sandi</string>
+    <string name="contoh_email_com">seseorang@email.com</string>
+    <string name="logo_google">Logo Google</string>
+    <string name="logo_facebook">Logo Facebook</string>
+    <string name="logo_microsoft">Logo Microsoft</string>
+    <string name="belum_memiliki_akun">Belum memiliki akun?</string>
+    <string name="log_in">Log In</string>
+    <string name="lupa_kata_sandi">Lupa kata sandi?</string>
+    <string name="atau_anda_dapat_masuk_dengan">Atau Anda dapat masuk dengan</string>
+    <string name="daftar_di_sini">Daftar di sini</string>
+    <string name="kata_sandi_anda">Kata sandi Anda</string>
+    <string name="input_valid_email_error">Masukkan email yang valid</string>
 </resources>
