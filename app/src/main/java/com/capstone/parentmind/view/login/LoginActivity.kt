@@ -12,6 +12,7 @@ import com.capstone.parentmind.R
 import com.capstone.parentmind.databinding.ActivityLoginBinding
 import com.capstone.parentmind.utils.checkEmailPattern
 import com.capstone.parentmind.view.home.HomeActivity
+import com.capstone.parentmind.view.register.RegisterActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -78,6 +79,11 @@ class LoginActivity : AppCompatActivity() {
    private fun setupAction() {
       binding.ivGoogleLogo.setOnClickListener {
          googleLogin()
+      }
+
+      binding.tvSignupButton.setOnClickListener {
+         val registerIntent = Intent(this, RegisterActivity::class.java)
+         startActivity(registerIntent)
       }
    }
 

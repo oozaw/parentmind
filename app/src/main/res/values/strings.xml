@@ -16,4 +16,7 @@
     <string name="daftar_di_sini">Daftar di sini</string>
     <string name="kata_sandi_anda">Kata sandi Anda</string>
     <string name="input_valid_email_error">Masukkan email yang valid</string>
+    <string name="tombol_kembali">tombol kembali</string>
+    <string name="buat_akun_baru">buat akun baru</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
 </resources>

@@ -32,7 +32,7 @@ class RoundedButton: AppCompatButton {
       background = if(isEnabled) enableBackground else disableBackground
       setPadding(0, 1, 0, 0)
       textSize = 16f
-      height = 35
+      height = 40
       isAllCaps = false
       gravity = Gravity.CENTER
    }
