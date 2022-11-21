@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import com.capstone.parentmind.R
 import com.capstone.parentmind.databinding.ActivityLoginBinding
@@ -31,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
    private lateinit var auth: FirebaseAuth
 
    private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+      showLoading(false)
       if (result.resultCode == Activity.RESULT_OK) {
          val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
          try {
@@ -78,6 +80,7 @@ class LoginActivity : AppCompatActivity() {
 
    private fun setupAction() {
       binding.ivGoogleLogo.setOnClickListener {
+         showLoading(true)
          googleLogin()
       }
 
@@ -101,6 +104,7 @@ class LoginActivity : AppCompatActivity() {
       val credential = GoogleAuthProvider.getCredential(idToken, null)
       auth.signInWithCredential(credential)
          .addOnCompleteListener(this) { task ->
+            showLoading(false)
             if (task.isSuccessful) {
                Log.d(TAG, "signInWithCredential: success")
                val user = auth.currentUser
@@ -172,6 +176,14 @@ class LoginActivity : AppCompatActivity() {
 
       binding.btnLogin.isEnabled =
          (!isInputEmailNull && !isInputPasswordNull && !isEmailError && !isPasswordError)
+   }
+
+   private fun showLoading(isLoading: Boolean) {
+      if (isLoading) {
+         binding.viewLoading.root.visibility = View.VISIBLE
+      } else {
+         binding.viewLoading.root.visibility = View.GONE
+      }
    }
 
    companion object {

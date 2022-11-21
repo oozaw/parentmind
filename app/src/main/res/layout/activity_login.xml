@@ -208,4 +208,13 @@
         app:layout_constraintStart_toEndOf="@id/tv_signup_label"
         app:layout_constraintTop_toTopOf="@id/tv_signup_label" />
 
+    <include
+        android:id="@+id/view_loading"
+        layout="@layout/view_loading"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
