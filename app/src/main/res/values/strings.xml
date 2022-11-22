@@ -19,4 +19,6 @@
     <string name="tombol_kembali">tombol kembali</string>
     <string name="buat_akun_baru">buat akun baru</string>
     <string name="nama_lengkap">Nama Lengkap</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

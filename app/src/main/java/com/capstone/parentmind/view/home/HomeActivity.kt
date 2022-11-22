@@ -1,14 +1,14 @@
 package com.capstone.parentmind.view.home
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.capstone.parentmind.R
 import com.capstone.parentmind.databinding.ActivityHomeBinding
-import com.capstone.parentmind.view.login.LoginActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,31 +16,26 @@ class HomeActivity : AppCompatActivity() {
    private var _binding: ActivityHomeBinding? = null
    private val binding get()= _binding!!
 
-   private lateinit var auth: FirebaseAuth
-
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
       _binding = ActivityHomeBinding.inflate(layoutInflater)
       setContentView(binding.root)
 
-      auth = Firebase.auth
+      setSupportActionBar(binding.toolbar)
 
-      setupAction()
+      val bottomNav = binding.bottomNav
+      val navController: NavController = findNavController(R.id.nav_host_fragment)
+
+      val appBarConfiguration = AppBarConfiguration.Builder(
+         R.id.nav_home, R.id.nav_article, R.id.nav_forum, R.id.nav_consult, R.id.nav_profile
+      ).build()
+
+      setupActionBarWithNavController(navController, appBarConfiguration)
+      bottomNav.setupWithNavController(navController)
    }
 
    override fun onDestroy() {
       super.onDestroy()
       _binding = null
-   }
-
-   private fun setupAction() {
-      binding.btnToLoginPage.setOnClickListener {
-         val loginIntent = Intent(this, LoginActivity::class.java)
-         startActivity(loginIntent)
-      }
-
-      binding.btnLogout.setOnClickListener {
-         auth.signOut()
-      }
    }
 }
