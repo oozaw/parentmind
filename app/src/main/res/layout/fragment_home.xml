@@ -11,7 +11,7 @@
         android:id="@+id/iv_background_banner"
         android:layout_width="match_parent"
         android:layout_height="190dp"
-        app:cardElevation="20dp"
+        app:cardElevation="10dp"
         app:cardBackgroundColor="@color/light_blue">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,7 +79,7 @@
                 android:layout_marginEnd="16dp"
                 app:cardBackgroundColor="#ACDEFF"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="10dp">
+                app:cardElevation="6dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -101,7 +101,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="34dp"
+                        android:layout_marginTop="28dp"
                         android:text="Artikel dan Video"
                         app:layout_constraintStart_toEndOf="@id/iv_article_icon"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -112,7 +112,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginEnd="28dp"
                         android:text="Berisi kumpulan artikel dan video dari yang bisa kamu nikmati bersama secangkir kopi"
                         android:textColor="@color/gray"
                         android:textSize="14sp"
@@ -132,7 +132,7 @@
                 android:layout_marginEnd="16dp"
                 app:cardBackgroundColor="#ACDEFF"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="10dp">
+                app:cardElevation="6dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -154,7 +154,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="34dp"
+                        android:layout_marginTop="28dp"
                         android:text="Konsultasi bersama Ahli"
                         app:layout_constraintStart_toEndOf="@id/iv_consult_icon"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -165,7 +165,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginEnd="28dp"
                         android:text="Berkomunikasi secara private dan aman melalui live chat dengan para ahli"
                         android:textColor="@color/gray"
                         android:textSize="14sp"
@@ -186,7 +186,7 @@
                 android:layout_marginBottom="16dp"
                 app:cardBackgroundColor="#ACDEFF"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="10dp">
+                app:cardElevation="6dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -208,7 +208,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="34dp"
+                        android:layout_marginTop="28dp"
                         android:text="Forum Diskusi"
                         app:layout_constraintStart_toEndOf="@id/iv_forum_icon"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -219,7 +219,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginEnd="28dp"
                         android:text="Diskusikan topik parenting melalui forum bersama dengan pengguna lainnya"
                         android:textColor="@color/gray"
                         android:textSize="14sp"
