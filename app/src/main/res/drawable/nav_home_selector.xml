@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:enterFadeDuration="@android:integer/config_shortAnimTime"
+    android:exitFadeDuration="@android:integer/config_shortAnimTime">
+
+    <item
+        android:state_checked="true"
+        android:drawable="@drawable/home_active">
+<!--        <layer-list>-->
+<!--            <item-->
+<!--                android:height="60dp"-->
+<!--                android:width="60dp"-->
+<!--                android:top="15dp"-->
+<!--                android:bottom="14dp">-->
+<!--                <bitmap-->
+<!--                    android:src="@drawable/test"-->
+<!--                    android:gravity="center"/>-->
+<!--&lt;!&ndash;                <shape android:shape="oval">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <size&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:height="2000dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:width="2000dp"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <solid&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:color="@color/blue"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </shape>&ndash;&gt;-->
+<!--            </item>-->
+<!--        </layer-list>-->
+    </item>
+    <item android:drawable="@drawable/home" android:state_checked="false"/>
+</selector>
