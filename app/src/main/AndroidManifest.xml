@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.capstone.parentmind">
 
     <application
         android:allowBackup="true"
@@ -12,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ParentMind"
         tools:targetApi="31">
+        <activity
+            android:name=".view.detailvideo.DetailVideoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.forum.ForumActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.video.VideoActivity"
+            android:exported="false" />
         <activity
             android:name=".view.home.HomeActivity"
             android:exported="true">

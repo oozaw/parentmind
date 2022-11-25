@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">ParentMind</string>
+    <string name="status_diskusi">Deskripsi Diskusi</string>
+    <string name="name">name_use</string>
+    <string name="nama_user">Nama Pengguna</string>
+    <string name="time_upload">Waktu Upload</string>
+    <string name="like">like</string>
+    <string name="comment">comment</string>
+    <string name="total_like">Like</string>
+    <string name="forum">Forum</string>
+    <string name="komunitas">Komunitas</string>
+    <string name="cari">cari</string>
+    <string name="title_video">Judul Video</string>
+    <string name="save">Save</string>
+    <string name="skrip_vidio">Skrip Vidio</string>
+    <string name="show_vidio">Menampilkan vidio yang Anda cari</string>
+    <string name="vidio_populer">Vidio Populer</string>
+    <string name="search_forum">Cari pembahasan yang ingin Anda inginkan</string>
+    <string name="notifikasi">Notifikasi</string>
+    <string name="search">search</string>
 </resources>

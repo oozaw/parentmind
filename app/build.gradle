@@ -1,14 +1,13 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.gms.google-services'
+  //  id 'com.google.gms.google-services'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
 }
 
 android {
-    namespace 'com.capstone.parentmind'
     compileSdk 33
 
     defaultConfig {
