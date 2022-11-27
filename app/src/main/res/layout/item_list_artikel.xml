@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="126dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <WebView
+            android:id="@+id/wv_artikel1"
+            android:layout_width="186dp"
+            android:layout_height="126dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="91dp"
+                android:layout_height="19dp"
+                android:text="Tentang Artikel"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:gravity="end">
+                <ImageView
+                    android:id="@+id/btn_save_artikel"
+                    android:layout_width="50dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/like" />
+                <ImageView
+                    android:id="@+id/btn_next2"
+                    android:layout_width="50dp"
+                    android:layout_height="22dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/icon_next" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
