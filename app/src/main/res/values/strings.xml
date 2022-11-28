@@ -21,4 +21,15 @@
     <string name="nama_lengkap">Nama Lengkap</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user">nama</string>
+    <string name="deskripsi">deskripsi</string>
+    <string name="like">like</string>
+    <string name="konsul">Konsul</string>
+    <string name="cari">cari</string>
+    <string name="title_artikel">Judul Artikel</string>
+    <string name="save">Save</string>
+    <string name="skrip_artikel">Skrip artikel</string>
+    <string name="show_artikel">Menampilkan artikel Pencarian Anda</string>
+    <string name="artikel_populer">Artikel Populer</string>
+    <string name="search">search</string>
 </resources>
