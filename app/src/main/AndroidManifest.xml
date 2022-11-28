@@ -15,6 +15,15 @@
         android:theme="@style/Theme.ParentMind"
         tools:targetApi="31">
         <activity
+            android:name=".view.detailvideo.DetailVideoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.forum.ForumActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.video.VideoActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.notification.NotificationActivity"
             android:exported="false" />
         <activity
