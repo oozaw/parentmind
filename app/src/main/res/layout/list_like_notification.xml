@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_gravity="center">
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            tools:src="@tools:sample/avatars"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        
+        <TextView
+            android:id="@+id/tv_notif"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            tools:text="Persiapan anak menginjak sekolah dasar, begitu banyak. Semangat bapak se Indonesia"
+            android:textSize="11sp"
+            android:maxLines="2"
+            app:layout_constraintStart_toEndOf="@id/iv_profile"
+            app:layout_constraintTop_toTopOf="@id/iv_profile"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Heru"
+            android:textSize="11sp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintStart_toStartOf="@id/tv_notif"
+            app:layout_constraintTop_toBottomOf="@id/tv_notif"/>
+
+        <TextView
+            android:id="@+id/tv_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="1 hari lalu"
+            android:textSize="11sp"
+            app:layout_constraintStart_toEndOf="@id/tv_name"
+            app:layout_constraintTop_toTopOf="@id/tv_name"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:id="@+id/tv_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="1000 likes"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:drawablePadding="8dp"
+            app:layout_constraintStart_toStartOf="@id/tv_notif"
+            app:drawableLeftCompat="@drawable/ic_baseline_thumb_up_6" />
+
+        <TextView
+            android:id="@+id/tv_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Balasan"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:drawablePadding="8dp"
+            app:layout_constraintEnd_toEndOf="@id/tv_notif"
+            app:drawableLeftCompat="@drawable/ic_baseline_mode_comment_11" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
