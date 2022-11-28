@@ -14,14 +14,24 @@
         android:theme="@style/Theme.ParentMind"
         tools:targetApi="31">
         <activity
-            android:name=".view.detailvideo.DetailVideoActivity"
+            android:name=".view.notification.NotificationActivity"
             android:exported="false" />
         <activity
-            android:name=".view.forum.ForumActivity"
-            android:exported="false" />
+            android:name=".view.register.RegisterActivity"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
-            android:name=".view.video.VideoActivity"
-            android:exported="false" />
+            android:name=".view.login.LoginActivity"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".view.home.HomeActivity"
             android:exported="true">
