@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.forum.ForumActivity">
+
+    <LinearLayout
+        android:id="@+id/ln_tv_menu_forum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/forum"
+            android:textSize="40sp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="start"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/komunitas"
+            android:textSize="40sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="start"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_add_status"
+        android:contentDescription="@string/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-40dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="@color/blueButton"
+        android:src="@drawable/ic_add_status"
+        app:tint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ln_tv_menu_forum"/>
+
+    <EditText
+        android:id="@+id/edt_search_forum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:textSize="12sp"
+        android:inputType="text"
+        android:padding="12dp"
+        android:hint="@string/search_forum"
+        android:fontFamily="@font/cabin_bold"
+        android:background="@drawable/bg_search_forum"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_add_status"
+        android:autofillHints="AutoFill" />
+
+    <ImageButton
+        android:id="@+id/btn_search_forum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:layout_marginTop="30dp"
+        android:padding="13dp"
+        android:src="@drawable/search"
+        android:background="@drawable/bg_ic_search"
+        app:layout_constraintTop_toBottomOf="@id/btn_add_status"
+        app:layout_constraintEnd_toEndOf="@id/edt_search_forum"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list_forum"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        tools:listitem="@layout/item_list_forum"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edt_search_forum"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
