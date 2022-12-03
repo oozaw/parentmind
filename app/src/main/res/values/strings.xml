@@ -18,4 +18,21 @@
     <string name="search_forum">Cari pembahasan yang ingin Anda inginkan</string>
     <string name="notifikasi">Notifikasi</string>
     <string name="search">search</string>
+    <string name="buat_kata_sandi_baru">Buat Kata Sandi Baru</string>
+    <string name="kata_sandi_baru_anda_harus_unik_dari_yang_sebelumnya_digunakan">Kata sandi baru Anda harus unik dari yang sebelumnya digunakan.</string>
+    <string name="masukkan_kata_sandi_baru">Masukkan Kata Sandi Baru</string>
+    <string name="konfirmasi_kata_sandi">Konfirmasi Kata Sandi</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="kata_sandi_berhasil_diubah">Kata Sandi Berhasil Diubah</string>
+    <string name="kata_sandi_anda_telah_berhasil_diubah">Kata sandi Anda telah berhasil diubah.</string>
+    <string name="kembali_ke_login">Kembali ke Login</string>
+    <string name="otp_verifikasi">OTP Verifikasi</string>
+    <string name="masukkan_kode_verifikasi_yang_baru_saja_kami_kirim_ke_alamat_email_anda">Masukkan kode verifikasi yang baru saja kami kirim ke alamat email Anda.</string>
+    <string name="tidak_menerima_kode">Tidak Menerima Kode ?</string>
+    <string name="kirim_ulang">Kirim Ulang</string>
+    <string name="kirim_kode">Kirim Kode</string>
+    <string name="ingat_password">Ingat Password ?</string>
+    <string name="login">Login</string>
+    <string name="masukkan_email_anda">Masukkan Email Anda</string>
+    <string name="jangan_khawatir_ini_terjadi_masukkan_alamat_email_yang_ditautkan_dengan_akun_anda">Jangan khawatir! Ini terjadi. Masukkan alamat email yang ditautkan dengan akun Anda.</string>
 </resources>
