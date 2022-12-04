@@ -21,8 +21,8 @@ class ArtikelActivity : AppCompatActivity() {
         layoutManager = LinearLayoutManager(this)
         rvArtikel.layoutManager = layoutManager
 
-        adapter = ArtikelAdapter()
-        rvArtikel.adapter = adapter
+//        adapter = ArtikelAdapter()
+//        rvArtikel.adapter = adapter
 
     }
 

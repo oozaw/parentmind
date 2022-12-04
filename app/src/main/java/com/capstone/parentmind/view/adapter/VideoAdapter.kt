@@ -1,50 +1,58 @@
 package com.capstone.parentmind.view.adapter
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.capstone.parentmind.R
+import com.capstone.parentmind.data.remote.response.ArticlesItem
+import com.capstone.parentmind.databinding.ItemListArtikelBinding
+import com.capstone.parentmind.databinding.ItemListVideoBinding
+import com.capstone.parentmind.view.video.detail.DetailVideoActivity
 
-class VideoAdapter : RecyclerView.Adapter<VideoAdapter.ViewHolder>() {
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-//ini untuk nyoba hasil recycle view
-        val list_video: WebView = itemView.findViewById(R.id.wv_video_edukasi)
-        val title_video: TextView = itemView.findViewById(R.id.tv_judul_video_edukasi)
-    }
+class VideoAdapter : ListAdapter<ArticlesItem, VideoAdapter.ViewHolder>(DIFF_CALLBACK) {
 
-    private val list_video = arrayOf(
-        "https://www.youtube.com/watch?v=BmTn6K5KaXI",
-        "https://www.youtube.com/watch?v=BmTn6K5KaXI",
-        "https://www.youtube.com/watch?v=BmTn6K5KaXI",
-        "https://www.youtube.com/watch?v=BmTn6K5KaXI",
-        "https://www.youtube.com/watch?v=BmTn6K5KaXI"
-    )
-
-    private val title_video = arrayOf(
-        "Tahap Perkembangan Anak Umur 3 Tahun | Rolen Ria dan Psikolog Pritta Tyas",
-        "Tahap Perkembangan Anak Umur 3 Tahun | Rolen Ria dan Psikolog Pritta Tyas",
-        "Tahap Perkembangan Anak Umur 3 Tahun | Rolen Ria dan Psikolog Pritta Tyas",
-        "Tahap Perkembangan Anak Umur 3 Tahun | Rolen Ria dan Psikolog Pritta Tyas",
-        "Tahap Perkembangan Anak Umur 3 Tahun | Rolen Ria dan Psikolog Pritta Tyas"
-    )
+    class ViewHolder(var binding: ItemListVideoBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list_video, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(ItemListVideoBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.list_video.loadUrl(list_video[position])
-        holder.title_video.text = title_video[position]
-
+        val video = getItem(position)
+        video?.let { vid ->
+            Glide.with(holder.binding.ivVideoEdukasi.context)
+                .load(vid.thumbnail)
+                .into(holder.binding.ivVideoEdukasi)
+            holder.binding.tvJudulVideoEdukasi.text = vid.title
+            holder.binding.tvSource.text = vid.source
+        }
+        holder.itemView.setOnClickListener { item ->
+            Intent(item.context, DetailVideoActivity::class.java).also { intent ->
+                intent.putExtra(DetailVideoActivity.EXTRA_VIDEO, video)
+                item.context.startActivity(intent)
+            }
+        }
     }
 
-    override fun getItemCount(): Int {
-        return title_video.size
+    companion object {
+        val DIFF_CALLBACK: DiffUtil.ItemCallback<ArticlesItem> =
+            object: DiffUtil.ItemCallback<ArticlesItem>() {
+                override fun areItemsTheSame(oldItem: ArticlesItem, newItem: ArticlesItem): Boolean {
+                    return oldItem.id == newItem.id
+                }
+
+                @SuppressLint("DiffUtilEquals")
+                override fun areContentsTheSame(oldItem: ArticlesItem, newItem: ArticlesItem): Boolean {
+                    return oldItem == newItem
+                }
+            }
     }
-
-
 }

@@ -41,9 +41,9 @@
     <string name="forum">Forum</string>
     <string name="komunitas">Komunitas</string>
     <string name="title_video">Judul Video</string>
-    <string name="skrip_vidio">Skrip Vidio</string>
-    <string name="show_vidio">Menampilkan vidio yang Anda cari</string>
-    <string name="vidio_populer">Vidio Populer</string>
+    <string name="skrip_vidio">Skrip Video</string>
+    <string name="show_vidio">Menampilkan video yang Anda cari</string>
+    <string name="vidio_populer">Video Populer</string>
     <string name="search_forum">Cari pembahasan yang ingin Anda inginkan</string>
     <string name="notifikasi">Notifikasi</string>
 </resources>
