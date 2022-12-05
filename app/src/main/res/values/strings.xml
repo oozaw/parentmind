@@ -46,4 +46,15 @@
     <string name="vidio_populer">Video Populer</string>
     <string name="search_forum">Cari pembahasan yang ingin Anda inginkan</string>
     <string name="notifikasi">Notifikasi</string>
+    <string name="username">Username</string>
+    <string name="masukkan_nama_lengkap_anda">Masukkan nama lengkap Anda</string>
+    <string name="masukkan_username_anda">Masukkan username Anda</string>
+    <string name="tanggal_lahir">Tanggal Lahir</string>
+    <string name="date_hint">01 Januari 2022</string>
+    <string name="masukkan_kata_sandi_anda">Masukkan kata sandi Anda</string>
+    <string name="konfirmasi_kata_sandi">Konfirmasi Kata Sandi</string>
+    <string name="masukkan_kembali_kata_sandi_anda">Masukkan kembali kata sandi Anda</string>
+    <string name="sudah_memiliki_akun">Sudah memiliki akun?</string>
+    <string name="login_di_sini">Login di sini</string>
+    <string name="sign_up">Sign Up</string>
 </resources>

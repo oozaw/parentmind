@@ -1,6 +1,7 @@
 package com.capstone.parentmind.data.remote.api
 
 import com.capstone.parentmind.data.remote.response.ArticleResponse
+import com.capstone.parentmind.data.remote.response.BasicResponse
 import com.capstone.parentmind.data.remote.response.LoginResponse
 import retrofit2.http.Body
 import retrofit2.http.Field
@@ -27,4 +28,13 @@ interface ApiService {
       @Field("email") email: String,
       @Field("password") password: String
    ): LoginResponse
+
+   @POST("register")
+   @FormUrlEncoded
+   suspend fun register(
+      @Field("name") name: String,
+      @Field("username") username: String,
+      @Field("email") email: String,
+      @Field("password") password: String
+   ): BasicResponse
 }

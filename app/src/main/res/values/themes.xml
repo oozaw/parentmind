@@ -18,7 +18,7 @@
     </style>
     
     <style name="header" parent="TextAppearance.AppCompat">
-        <item name="android:textSize">26sp</item>
+        <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:fontFamily">@font/roboto_bold</item>

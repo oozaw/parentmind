@@ -8,6 +8,7 @@ import androidx.lifecycle.map
 import com.capstone.parentmind.data.local.preference.AuthPreference
 import com.capstone.parentmind.data.local.preference.UserPreference
 import com.capstone.parentmind.data.remote.api.ApiService
+import com.capstone.parentmind.data.remote.response.BasicResponse
 import com.capstone.parentmind.data.remote.response.LoginResponse
 import retrofit2.HttpException
 import javax.inject.Inject
@@ -18,6 +19,9 @@ class UserRepository @Inject constructor(
 ) {
    private val _loginResponse = MutableLiveData<LoginResponse>()
    val loginResponse: LiveData<LoginResponse> = _loginResponse
+
+   private var _registerResponse = MutableLiveData<BasicResponse>()
+   val registerResponse: LiveData<BasicResponse> = _registerResponse
 
    fun checkStateLogin() = userPreference.getState()
 
@@ -35,6 +39,20 @@ class UserRepository @Inject constructor(
       }
 
       val data: LiveData<Result<LoginResponse>> = loginResponse.map { Result.Success(it) }
+      emitSource(data)
+   }
+
+   fun register(name: String, username: String, email: String, password: String): LiveData<Result<BasicResponse>> = liveData {
+      emit(Result.Loading)
+      try {
+         val response = apiService.register(name, username, email, password)
+         _registerResponse.value = response
+      } catch (e: Exception) {
+         Log.e(TAG, "register: ${e.message}")
+         emit(Result.Error(e.message.toString()))
+      }
+
+      val data: LiveData<Result<BasicResponse>> = registerResponse.map { Result.Success(it) }
       emitSource(data)
    }
 
