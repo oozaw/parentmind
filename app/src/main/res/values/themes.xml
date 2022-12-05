@@ -13,6 +13,8 @@
         <item name="android:statusBarColor">@color/light_blue</item>
         <!-- Customize your theme here. -->
         <item name="windowNoTitle">true</item>
+
+        <item name="android:fontFamily">@font/cabin_regular</item>
     </style>
     
     <style name="header" parent="TextAppearance.AppCompat">
@@ -23,7 +25,7 @@
     </style>
 
     <style name="desc_header" parent="TextAppearance.AppCompat">
-        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:fontFamily">@font/cabin_medium</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/gray</item>
     </style>

@@ -1,4 +1,4 @@
-package com.capstone.parentmind.view.video
+package com.capstone.parentmind.view.video.main
 
 import androidx.lifecycle.ViewModel
 import com.capstone.parentmind.data.VideoRepository

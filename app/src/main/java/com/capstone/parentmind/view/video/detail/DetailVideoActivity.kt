@@ -2,17 +2,15 @@ package com.capstone.parentmind.view.video.detail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import com.capstone.parentmind.BuildConfig
 import com.capstone.parentmind.R
 import com.capstone.parentmind.data.remote.response.ArticlesItem
 import com.capstone.parentmind.databinding.ActivityDetailVideoBinding
 import com.capstone.parentmind.utils.extractVideoId
 import com.capstone.parentmind.utils.makeToast
-import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerFragment
-import com.google.android.youtube.player.YouTubePlayerSupportFragment
 
 
 class DetailVideoActivity : AppCompatActivity() {
@@ -21,6 +19,7 @@ class DetailVideoActivity : AppCompatActivity() {
 
     private lateinit var video: ArticlesItem
 
+    private val apiKey: String = BuildConfig.API_KEY
     private lateinit var youtubeVideoPlayer: YouTubePlayer
     private var isVideoFullscreen = false
 
@@ -71,7 +70,7 @@ class DetailVideoActivity : AppCompatActivity() {
         val ytPlayer = fragmentManager.findFragmentById(R.id.youtube_player) as YouTubePlayerFragment
 
         ytPlayer.initialize(
-            "AIzaSyBjf66tvKxRM6Hj8ht9PzRMb74thNSNeiQ",
+            apiKey,
             object : YouTubePlayer.OnInitializedListener {
                 override fun onInitializationSuccess(
                     provider: YouTubePlayer.Provider?,

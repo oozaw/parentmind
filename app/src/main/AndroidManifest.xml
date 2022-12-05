@@ -15,13 +15,6 @@
         android:theme="@style/Theme.ParentMind"
         tools:targetApi="31" >
         <activity
-            android:name=".DetailVideoActivity"
-            android:exported="false" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".view.video.detail.DetailVideoActivity"
             android:exported="false" />
         <activity

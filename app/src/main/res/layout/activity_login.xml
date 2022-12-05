@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.login.LoginActivity">
+    tools:context=".view.login.LoginActivity"
+    android:focusableInTouchMode="true">
 
     <TextView
         android:id="@+id/tv_header"
@@ -53,10 +54,12 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email_edit_text"
+            style="@style/body"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:maxLines="1"
             android:inputType="textEmailAddress"
+            android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:paddingStart="22dp"
             android:hint="@string/contoh_email_com"
@@ -90,10 +93,12 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password_edit_text"
+            style="@style/body"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:maxLines="1"
             android:inputType="textPassword"
+            android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:paddingStart="22dp"
             android:hint="@string/kata_sandi_anda"
@@ -211,6 +216,7 @@
     <include
         android:id="@+id/view_loading"
         layout="@layout/view_loading"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,20 +1,21 @@
 package com.capstone.parentmind.data
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
-import androidx.lifecycle.map
+import androidx.lifecycle.*
+import com.capstone.parentmind.data.local.preference.AuthPreference
+import com.capstone.parentmind.data.local.preference.UserPreference
 import com.capstone.parentmind.data.remote.api.ApiService
 import com.capstone.parentmind.data.remote.response.ArticleResponse
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class VideoRepository @Inject constructor(
-   private val apiService: ApiService
+   private val apiService: ApiService,
+   private val userPreference: AuthPreference
 ) {
-   private val token: String = "Bearer 1|oWxyLexv9liDiJ59cZDPozv6f4SukAaLLDIABHcO"
+   private val token = userPreference.getToken()
 
    private val _videoResponse = MutableLiveData<ArticleResponse>()
    val videoResponse: LiveData<ArticleResponse> = _videoResponse
@@ -23,6 +24,7 @@ class VideoRepository @Inject constructor(
       emit(Result.Loading)
       try {
          val response = apiService.getVideo(token)
+         Log.d(TAG, "getVideos: $token")
          _videoResponse.value = response
       } catch (e: Exception) {
          Log.d(TAG, "getVideos: ${e.message}")

@@ -15,7 +15,6 @@ import com.capstone.parentmind.data.remote.response.ArticlesItem
 import com.capstone.parentmind.databinding.ActivityMainVideoBinding
 import com.capstone.parentmind.utils.makeToast
 import com.capstone.parentmind.view.adapter.VideoAdapter
-import com.capstone.parentmind.view.video.MainVideoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
