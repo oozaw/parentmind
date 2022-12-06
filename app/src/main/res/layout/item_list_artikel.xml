@@ -3,24 +3,31 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="10dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="126dp"
         android:orientation="horizontal"
         android:weightSum="2">
-        <WebView
-            android:id="@+id/wv_artikel1"
+        <ImageView
+            android:background="@drawable/corner_radius20dp"
+            android:clipToOutline="true"
+            android:scaleType="fitXY"
+            android:id="@+id/iv_thumbnail"
             android:layout_width="186dp"
-            android:layout_height="126dp"/>
+            android:layout_height="126dp"
+            tools:src="@tools:sample/backgrounds/scenic"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center">
             <TextView
-                android:layout_width="91dp"
-                android:layout_height="19dp"
+                android:id="@+id/tv_title"
+                android:layout_marginStart="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Tentang Artikel"
                 android:fontFamily="@font/roboto_bold"
                 android:textSize="12sp" />
@@ -31,12 +38,12 @@
                 android:paddingTop="10dp"
                 android:gravity="end">
                 <ImageView
-                    android:id="@+id/btn_save_artikel"
+                    android:id="@+id/iv_save"
                     android:layout_width="50dp"
                     android:layout_height="22dp"
-                    android:src="@drawable/like" />
+                    android:src="@drawable/ic_baseline_favorite_border_24" />
                 <ImageView
-                    android:id="@+id/btn_next2"
+                    android:id="@+id/iv_share"
                     android:layout_width="50dp"
                     android:layout_height="22dp"
                     android:layout_marginEnd="4dp"
