@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 
 class UserPreference constructor(private val dataStore: DataStore<Preferences>): AuthPreference {
-//   val token: String = runBlocking { dataStore.data.first()[TOKEN_KEY] ?: "" }
 
    override fun getToken(): String = runBlocking { dataStore.data.first()[TOKEN_KEY] ?: "" }
 

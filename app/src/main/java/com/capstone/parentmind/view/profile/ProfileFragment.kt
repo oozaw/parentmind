@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.capstone.parentmind.R
+import com.capstone.parentmind.data.remote.response.User
 import com.capstone.parentmind.databinding.FragmentProfileBinding
 import com.capstone.parentmind.view.home.HomeActivity
 import com.capstone.parentmind.view.home.HomeViewModel
@@ -20,6 +21,8 @@ class ProfileFragment : Fragment() {
    private val binding get() = _binding!!
 
    private val viewModel: HomeViewModel by viewModels()
+
+   private lateinit var user: User
 
    override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +37,13 @@ class ProfileFragment : Fragment() {
       super.onViewCreated(view, savedInstanceState)
 
       setupAction()
+      setupView()
+   }
+
+   override fun onStart() {
+      super.onStart()
+
+
    }
 
    override fun onDestroy() {
@@ -48,6 +58,13 @@ class ProfileFragment : Fragment() {
 
       binding.ivLogoutProfile.setOnClickListener {
          logout()
+      }
+   }
+
+   private fun setupView() {
+      viewModel.getUser().observe(viewLifecycleOwner) {  user ->
+         binding.tvFullnameProfile.text = user.name
+         binding.tvEmailProfile.text = user.email
       }
    }
 
