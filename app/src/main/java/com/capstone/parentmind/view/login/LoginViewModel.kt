@@ -12,5 +12,7 @@ class LoginViewModel @Inject constructor(private val userRepository: UserReposit
 
    fun login(email: String, password: String) = userRepository.login(email, password)
 
+   fun loginFB(name: String, email: String, password: String) = userRepository.loginFB(name, email, password)
+
    fun isLogin(): LiveData<Boolean> = userRepository.checkStateLogin().asLiveData()
 }

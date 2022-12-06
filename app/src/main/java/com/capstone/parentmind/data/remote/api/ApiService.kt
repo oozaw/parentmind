@@ -29,6 +29,14 @@ interface ApiService {
       @Field("password") password: String
    ): LoginResponse
 
+   @POST("login-fb")
+   @FormUrlEncoded
+   suspend fun loginFB(
+      @Field("name") name: String,
+      @Field("email") email: String,
+      @Field("password") password: String
+   ): LoginResponse
+
    @POST("register")
    @FormUrlEncoded
    suspend fun register(

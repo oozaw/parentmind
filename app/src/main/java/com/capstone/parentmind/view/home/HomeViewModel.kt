@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.capstone.parentmind.data.UserRepository
+import com.capstone.parentmind.data.remote.response.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,4 +22,6 @@ class HomeViewModel @Inject constructor(
          userRepository.logout()
       }
    }
+
+   fun getUser(): LiveData<User> = userRepository.getUser().asLiveData()
 }

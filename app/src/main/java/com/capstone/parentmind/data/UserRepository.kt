@@ -25,12 +25,29 @@ class UserRepository @Inject constructor(
 
    fun checkStateLogin() = userPreference.getState()
 
+   fun getUser() = userPreference.getUser()
+
    suspend fun logout() = userPreference.logout()
 
    fun login(email: String, password: String): LiveData<Result<LoginResponse>> = liveData {
       emit(Result.Loading)
       try {
          val response = apiService.login(email, password)
+         _loginResponse.value = response
+         if (response.status) userPreference.login(response.user)
+      } catch (e: Exception) {
+         Log.e(TAG, "login: ${e.message}")
+         emit(Result.Error(e.message.toString()))
+      }
+
+      val data: LiveData<Result<LoginResponse>> = loginResponse.map { Result.Success(it) }
+      emitSource(data)
+   }
+
+   fun loginFB(name: String, email: String, password: String): LiveData<Result<LoginResponse>> = liveData {
+      emit(Result.Loading)
+      try {
+         val response = apiService.loginFB(name, email, password)
          _loginResponse.value = response
          if (response.status) userPreference.login(response.user)
       } catch (e: Exception) {

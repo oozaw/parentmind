@@ -40,7 +40,6 @@ class LoginActivity : AppCompatActivity() {
    private lateinit var auth: FirebaseAuth
 
    private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-      showLoading(false)
       if (result.resultCode == Activity.RESULT_OK) {
          val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
          try {
@@ -149,11 +148,32 @@ class LoginActivity : AppCompatActivity() {
       val credential = GoogleAuthProvider.getCredential(idToken, null)
       auth.signInWithCredential(credential)
          .addOnCompleteListener(this) { task ->
-            showLoading(false)
             if (task.isSuccessful) {
                Log.d(TAG, "signInWithCredential: success")
-               val user = auth.currentUser != null
-               updateUI(user)
+               val user = auth.currentUser
+
+               user?.let {
+                  viewModel.loginFB(user.displayName!!, user.email!!, user.uid).observe(this) {
+                     it?.let { result ->
+                        when (result) {
+                           is Result.Loading -> showLoading(true)
+                           is Result.Success -> {
+                              showLoading(false)
+                              if (result.data.status) {
+                                 makeToast(this, "Login berhasil, selamat datang ${result.data.user.name}")
+                                 updateUI(true)
+                              } else {
+                                 makeToast(this, "Login gagal, ${result.data.message}")
+                              }
+                           }
+                           is Result.Error -> {
+                              showLoading(false)
+                              makeToast(this, "Terjadi error, ${result.error}")
+                           }
+                        }
+                     }
+                  }
+               }
             } else {
                Log.w(TAG, "signInWithCredential: failure ", task.exception )
                updateUI(false)
