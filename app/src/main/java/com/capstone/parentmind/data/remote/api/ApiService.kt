@@ -22,6 +22,13 @@ interface ApiService {
       @Header("Authorization") token: String
    ): ArticleResponse
 
+   @GET("articles?type=video")
+   suspend fun getVideoPage(
+      @Header("Authorization") token: String,
+      @Query("page") page: Int,
+      @Query("size") size: Int
+   ): ArticleResponse
+
    @POST("login")
    @FormUrlEncoded
    suspend fun login(

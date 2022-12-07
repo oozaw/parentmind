@@ -2,20 +2,23 @@ package com.capstone.parentmind.view.video.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.parentmind.R
-import com.capstone.parentmind.data.Result
 import com.capstone.parentmind.data.remote.response.ArticlesItem
 import com.capstone.parentmind.databinding.ActivityMainVideoBinding
-import com.capstone.parentmind.utils.makeToast
-import com.capstone.parentmind.view.adapter.VideoAdapter
+import com.capstone.parentmind.view.adapter.LoadingStateAdapter
+import com.capstone.parentmind.view.adapter.VideoPagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainVideoActivity : AppCompatActivity() {
@@ -24,14 +27,14 @@ class MainVideoActivity : AppCompatActivity() {
 
     private val viewModel: MainVideoViewModel by viewModels()
 
-    private lateinit var videoAdapter: VideoAdapter
+    private lateinit var videoAdapter: VideoPagingAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainVideoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        videoAdapter = VideoAdapter()
+        videoAdapter = VideoPagingAdapter()
 
         setupView()
         setupAction()
@@ -58,30 +61,7 @@ class MainVideoActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        viewModel.getVideos().observe(this) { result ->
-            result?.let {
-                when (it) {
-                    is Result.Loading -> {
-                        showLoading(true)
-                    }
-                    is Result.Success -> {
-                        showLoading(false)
-                        if (it.data.articles.isNotEmpty()) {
-                            Log.d(TAG, "setupView: ${it.data.message}")
-                            setupRecyclerView(it.data.articles)
-                        } else {
-                            makeToast(this, "Data kosong!")
-                            Log.e(TAG, "setupView: Data kosong!", )
-                        }
-                    }
-                    is Result.Error -> {
-                        showLoading(false)
-                        makeToast(this, it.error)
-                        Log.e(TAG, "onViewCreated: ${it.error}")
-                    }
-                }
-            }
-        }
+        getVideoData()
     }
 
     private fun setupAction() {
@@ -91,14 +71,36 @@ class MainVideoActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupRecyclerView(data: List<ArticlesItem>) {
-        videoAdapter.submitList(data)
+    private fun getVideoData() {
+        viewModel.videoPaging().observe(this) { data ->
+            lifecycleScope.launchWhenCreated {
+                launch(Dispatchers.Main) {
+                    videoAdapter.loadStateFlow.collectLatest {
+                        if (it.refresh is LoadState.Loading) {
+                            showLoading(true)
+                        } else {
+                            showLoading(false)
+                        }
+                    }
+                }
+                setupRecyclerView(data)
+            }
+        }
+    }
+
+    private fun setupRecyclerView(data: PagingData<ArticlesItem>) {
+        videoAdapter.submitData(lifecycle, data)
 
         binding.rvListVideo.apply {
-            layoutManager = LinearLayoutManager(context)
             layoutManager = GridLayoutManager(context, 2)
-            setHasFixedSize(true)
-            adapter = videoAdapter
+            adapter = videoAdapter.withLoadStateHeaderAndFooter(
+                footer = LoadingStateAdapter {
+                    videoAdapter.retry()
+                },
+                header = LoadingStateAdapter {
+                    videoAdapter.retry()
+                }
+            )
         }
     }
 
@@ -109,9 +111,5 @@ class MainVideoActivity : AppCompatActivity() {
         } else {
             binding.viewLoading.root.visibility = View.GONE
         }
-    }
-
-    companion object {
-        const val TAG = "MainVideoActivity"
     }
 }
