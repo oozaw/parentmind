@@ -71,13 +71,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_detail_judul_artikel"
                 android:layout_marginTop="16dp"
-                 />
+                />
 
             <Button
                 android:id="@+id/btn_save_artikel"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
-                android:drawableLeft="@drawable/ic_baseline_favorite_border_24"
+                android:drawableLeft="@drawable/ic_favorite"
                 android:background="@drawable/bg_button_stroke_black"
                 app:backgroundTint="@null"
                 android:text="@string/save"

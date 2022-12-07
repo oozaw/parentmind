@@ -52,4 +52,14 @@ interface ApiService {
       @Field("email") email: String,
       @Field("password") password: String
    ): BasicResponse
+   
+   @GET("articles")
+   fun getAllArticles(
+      @Query("type") type : String
+   ): Call<ArtikelResponse>
+
+   @GET("articles/{id}")
+   fun getDetailArticle(
+      @Path("id") id : Int
+   ): Call<DetailArtikelResponse>
 }
