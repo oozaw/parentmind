@@ -33,6 +33,7 @@ class RegisterActivity : AppCompatActivity() {
 
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
+      setTheme(R.style.Theme_ParentMind)
       _binding = ActivityRegisterBinding.inflate(layoutInflater)
       setContentView(binding.root)
 

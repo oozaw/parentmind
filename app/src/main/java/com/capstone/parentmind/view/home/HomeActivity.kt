@@ -27,6 +27,7 @@ class HomeActivity : AppCompatActivity() {
 
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
+      setTheme(R.style.Theme_ParentMind)
       _binding = ActivityHomeBinding.inflate(layoutInflater)
       setContentView(binding.root)
 

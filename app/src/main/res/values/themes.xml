@@ -16,6 +16,10 @@
 
         <item name="android:fontFamily">@font/cabin_regular</item>
     </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_image</item>
+    </style>
     
     <style name="header" parent="TextAppearance.AppCompat">
         <item name="android:textSize">22sp</item>
