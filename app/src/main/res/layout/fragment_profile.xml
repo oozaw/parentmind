@@ -10,15 +10,18 @@
     <TextView
         android:id="@+id/tv_label_page"
         style="@style/body.bold"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:text="Profile"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="26sp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/civ_profile_picture"

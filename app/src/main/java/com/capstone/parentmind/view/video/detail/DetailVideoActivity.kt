@@ -1,6 +1,8 @@
 package com.capstone.parentmind.view.video.detail
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import androidx.appcompat.app.AppCompatActivity
 import com.capstone.parentmind.BuildConfig
 import com.capstone.parentmind.R
@@ -56,6 +58,12 @@ class DetailVideoActivity : AppCompatActivity() {
 
         binding.tvVideoTitle.text = video.title
         binding.tvVideoSource.text = video.source
+        binding.tvVideoDescription.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(video.body, Html.FROM_HTML_MODE_COMPACT)
+        } else {
+            @Suppress("DEPRECATION")
+            Html.fromHtml(video.body)
+        }
     }
 
     private fun setupAction() {
