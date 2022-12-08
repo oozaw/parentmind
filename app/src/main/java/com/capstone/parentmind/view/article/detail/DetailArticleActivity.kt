@@ -1,5 +1,7 @@
 package com.capstone.parentmind.view.article.detail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -51,6 +53,12 @@ class DetailArticleActivity : AppCompatActivity() {
         binding.btnBackToolbar.setOnClickListener {
             @Suppress("DEPRECATION")
             onBackPressed()
+        }
+
+        binding.btnOpenArticle.setOnClickListener {
+            Intent(Intent.ACTION_VIEW, Uri.parse(article.link)).also { intent ->
+                startActivity(intent)
+            }
         }
     }
 

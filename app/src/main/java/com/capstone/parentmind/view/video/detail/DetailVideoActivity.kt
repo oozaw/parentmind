@@ -1,5 +1,7 @@
 package com.capstone.parentmind.view.video.detail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -72,6 +74,12 @@ class DetailVideoActivity : AppCompatActivity() {
         binding.btnBackToolbar.setOnClickListener {
             @Suppress("DEPRECATION")
             onBackPressed()
+        }
+
+        binding.btnOpenVideo.setOnClickListener {
+            Intent(Intent.ACTION_VIEW, Uri.parse(video.link)).also { intent ->
+                startActivity(intent)
+            }
         }
     }
 

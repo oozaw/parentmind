@@ -2,6 +2,7 @@ package com.capstone.parentmind.view.adapter
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -33,6 +34,11 @@ class ArticlePagingAdapter : PagingDataAdapter<ArticlesItem, ArticlePagingAdapte
                     .into(holder.binding.ivThumbnail)
                 holder.binding.tvTitle.text = item.title
                 holder.binding.tvSource.text = article.source
+                holder.binding.ivOpen.setOnClickListener {
+                    Intent(Intent.ACTION_VIEW, Uri.parse(item.link)).also { intent ->
+                        holder.itemView.context.startActivity(intent)
+                    }
+                }
             }
             holder.itemView.setOnClickListener { item ->
                 Intent(item.context, DetailArticleActivity::class.java).also { intent ->
