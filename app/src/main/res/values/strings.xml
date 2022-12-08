@@ -94,4 +94,6 @@
     <string name="video">Video</string>
     <string name="profil">Profil</string>
     <string name="tombol_edit">tombol edit</string>
+    <string name="oops">Oops!</string>
+    <string name="this_feature_is_under_development">This feature is under development</string>
 </resources>
