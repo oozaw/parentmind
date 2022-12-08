@@ -15,7 +15,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:text="Profile"
+        android:text="@string/profil"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="26sp"
@@ -41,7 +41,8 @@
         android:layout_marginEnd="-10dp"
         android:src="@drawable/pen_bg"
         app:layout_constraintBottom_toBottomOf="@id/civ_profile_picture"
-        app:layout_constraintEnd_toEndOf="@id/civ_profile_picture"/>
+        app:layout_constraintEnd_toEndOf="@id/civ_profile_picture"
+        android:contentDescription="@string/tombol_edit" />
 
     <TextView
         android:id="@+id/tv_fullname_profile"
@@ -53,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@id/civ_profile_picture"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Afri Yutara"/>
+        tools:text="Afri Yutara"/>
 
     <TextView
         android:id="@+id/tv_email_profile"
@@ -64,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_fullname_profile"
         app:layout_constraintStart_toStartOf="@id/tv_fullname_profile"
         app:layout_constraintEnd_toEndOf="@id/tv_fullname_profile"
-        android:text="afriyutara@gmail.com"/>
+        tools:text="afriyutara@gmail.com"/>
 
     <ScrollView
         android:layout_width="0dp"

@@ -92,4 +92,6 @@
     <string name="jenis_media">Jenis Media</string>
     <string name="artikel">Artikel</string>
     <string name="video">Video</string>
+    <string name="profil">Profil</string>
+    <string name="tombol_edit">tombol edit</string>
 </resources>
