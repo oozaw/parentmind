@@ -165,6 +165,7 @@
                 android:textColor="@color/light_gray"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:lineSpacingExtra="2dp"
                 android:fontFamily="@font/cabin_medium"
                 tools:text="@tools:sample/lorem/random"
                 android:justificationMode="inter_word"
