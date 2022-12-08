@@ -4,6 +4,7 @@
     package="com.capstone.parentmind" >
 
     <application
+        android:name=".ParentMindApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -46,21 +47,19 @@
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.article.ArtikelActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name=".view.article.main.MainArticleActivity"
+            android:exported="false">
         </activity>
         <activity
-            android:name=".view.detailartikel.DetailArtikelActivity"
+            android:name=".view.article.detail.DetailArticleActivity"
             android:exported="false"/>
     </application>
 

@@ -3,30 +3,43 @@ package com.capstone.parentmind.data.remote.api
 import com.capstone.parentmind.data.remote.response.ArticleResponse
 import com.capstone.parentmind.data.remote.response.BasicResponse
 import com.capstone.parentmind.data.remote.response.LoginResponse
-import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
    @GET("articles")
-   suspend fun getArticle(
+   suspend fun getAllArticles(
       @Header("Authorization") token: String
+   ): ArticleResponse
+
+   @GET("articles")
+   suspend fun getAllArticlesPage(
+      @Header("Authorization") token: String,
+      @Query("page") page: Int,
+      @Query("size") size: Int
+   ): ArticleResponse
+
+   @GET("articles/{id}")
+   suspend fun getDetailArticle(
+      @Path("id") id : Int
+   ): ArticleResponse
+
+   @GET("articles")
+   suspend fun getArticlesType(
+      @Header("Authorization") token: String,
+      @Query("type") type: String
+   ): ArticleResponse
+
+   @GET("articles")
+   suspend fun getArticlesTypePage(
+      @Header("Authorization") token: String,
+      @Query("type") type: String,
+      @Query("page") page: Int,
+      @Query("size") size: Int
    ): ArticleResponse
 
    @GET("articles?type=video")
    suspend fun getVideo(
       @Header("Authorization") token: String
-   ): ArticleResponse
-
-   @GET("articles?type=video")
-   suspend fun getVideoPage(
-      @Header("Authorization") token: String,
-      @Query("page") page: Int,
-      @Query("size") size: Int
    ): ArticleResponse
 
    @POST("login")
@@ -52,14 +65,5 @@ interface ApiService {
       @Field("email") email: String,
       @Field("password") password: String
    ): BasicResponse
-   
-   @GET("articles")
-   fun getAllArticles(
-      @Query("type") type : String
-   ): Call<ArtikelResponse>
 
-   @GET("articles/{id}")
-   fun getDetailArticle(
-      @Path("id") id : Int
-   ): Call<DetailArtikelResponse>
 }

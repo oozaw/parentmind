@@ -5,13 +5,18 @@ import androidx.paging.PagingState
 import com.capstone.parentmind.data.remote.api.ApiService
 import com.capstone.parentmind.data.remote.response.ArticlesItem
 
-class ArticlePagingSource(private val apiService: ApiService, private val token: String): PagingSource<Int, ArticlesItem>() {
+class ArticlePagingSource(
+   private val apiService: ApiService,
+   private val token: String,
+   private val type: String
+): PagingSource<Int, ArticlesItem>() {
 
    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ArticlesItem> {
       return try {
          val position = params.key ?: INITIAL_PAGE_INDEX
-         val responseData = apiService.getVideoPage(
+         val responseData = apiService.getArticlesTypePage(
             token = token,
+            type = type,
             page = position,
             size = params.loadSize
          )

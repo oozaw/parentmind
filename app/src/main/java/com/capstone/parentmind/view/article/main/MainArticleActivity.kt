@@ -1,4 +1,4 @@
-package com.capstone.parentmind.view.video.main
+package com.capstone.parentmind.view.article.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,36 +11,40 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.capstone.parentmind.R
 import com.capstone.parentmind.data.remote.response.ArticlesItem
-import com.capstone.parentmind.databinding.ActivityMainVideoBinding
+import com.capstone.parentmind.databinding.ActivityMainArticleBinding
+import com.capstone.parentmind.view.adapter.ArticlePagingAdapter
 import com.capstone.parentmind.view.adapter.LoadingStateAdapter
-import com.capstone.parentmind.view.adapter.VideoPagingAdapter
-import com.capstone.parentmind.view.video.detail.DetailVideoActivity
+import com.capstone.parentmind.view.article.detail.DetailArticleActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainVideoActivity : AppCompatActivity() {
-    private var _binding: ActivityMainVideoBinding? = null
+class MainArticleActivity : AppCompatActivity() {
+
+    private var _binding: ActivityMainArticleBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MainVideoViewModel by viewModels()
+    private val viewModel: MainArticleViewModel by viewModels()
 
-    private lateinit var videoAdapter: VideoPagingAdapter
+    private lateinit var articleAdapter: ArticlePagingAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_ParentMind)
-        _binding = ActivityMainVideoBinding.inflate(layoutInflater)
+        _binding = ActivityMainArticleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        videoAdapter = VideoPagingAdapter()
+        articleAdapter = ArticlePagingAdapter()
 
         setupView()
+
         setupAction()
     }
 
@@ -49,6 +53,7 @@ class MainVideoActivity : AppCompatActivity() {
         _binding = null
     }
 
+    //option main menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_navbar, menu)
         return super.onCreateOptionsMenu(menu)
@@ -65,7 +70,7 @@ class MainVideoActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        getVideoData()
+        getArticleData()
     }
 
     private fun setupAction() {
@@ -75,18 +80,16 @@ class MainVideoActivity : AppCompatActivity() {
         }
     }
 
-    private fun getVideoData() {
-        viewModel.videoPaging().observe(this) { data ->
+    private fun getArticleData() {
+        viewModel.getArticles("article").observe(this) { data ->
             lifecycleScope.launchWhenCreated {
                 launch(Dispatchers.Main) {
-                    videoAdapter.loadStateFlow.collectLatest {
+                    articleAdapter.loadStateFlow.collectLatest {
                         if (it.refresh is LoadState.Loading) {
                             showLoading(true)
                         } else {
-//                            videoAdapter.notifyItemRemoved(0)
-//                            videoAdapter.notifyItemRangeChanged(1, videoAdapter.itemCount)
-                            val latest = videoAdapter.snapshot().items[0]
-                            setupLatestVideo(latest)
+                            val latest = articleAdapter.snapshot().items[0]
+                            setupLatestArticle(latest)
                             showLoading(false)
                         }
                     }
@@ -97,30 +100,30 @@ class MainVideoActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(data: PagingData<ArticlesItem>) {
-        videoAdapter.submitData(lifecycle, data)
+        articleAdapter.submitData(lifecycle, data)
 
-        binding.rvListVideo.apply {
-            layoutManager = GridLayoutManager(context, 2)
-            adapter = videoAdapter.withLoadStateHeaderAndFooter(
+        binding.rvListArticle.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = articleAdapter.withLoadStateHeaderAndFooter(
                 footer = LoadingStateAdapter {
-                    videoAdapter.retry()
+                    articleAdapter.retry()
                 },
                 header = LoadingStateAdapter {
-                    videoAdapter.retry()
+                    articleAdapter.retry()
                 }
             )
         }
     }
 
-    private fun setupLatestVideo(video: ArticlesItem) {
-        Glide.with(binding.ivLatestVideo.context)
-            .load(video.thumbnail)
-            .into(binding.ivLatestVideo)
-        binding.tvTitleLatestVideo.text = video.title
-        binding.tvSourceLatestVideo.text = video.source
-        binding.cvLatestVideo.setOnClickListener {
-            Intent(this, DetailVideoActivity::class.java).also { intent ->
-                intent.putExtra(DetailVideoActivity.EXTRA_VIDEO, video)
+    private fun setupLatestArticle(article: ArticlesItem) {
+        Glide.with(binding.ivLatestArticle.context)
+            .load(article.thumbnail)
+            .into(binding.ivLatestArticle)
+        binding.tvTitleLatestArticle.text = article.title
+        binding.tvSourceLatestArticle.text = article.source
+        binding.cvLatestArticle.setOnClickListener {
+            Intent(this, DetailArticleActivity::class.java).also { intent ->
+                intent.putExtra(DetailArticleActivity.EXTRA_ARTICLE, article)
                 startActivity(intent)
             }
         }

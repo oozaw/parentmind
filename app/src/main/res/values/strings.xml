@@ -29,7 +29,7 @@
     <string name="title_artikel">Judul Artikel</string>
     <string name="save">Simpan</string>
     <string name="skrip_artikel">Skrip artikel</string>
-    <string name="show_artikel">Menampilkan artikel Pencarian Anda</string>
+    <string name="show_artikel">Menampilkan artikel pencarian Anda</string>
     <string name="artikel_populer">Artikel Populer</string>
     <string name="search">search</string>
     <string name="status_diskusi">Deskripsi Diskusi</string>
@@ -57,4 +57,11 @@
     <string name="sudah_memiliki_akun">Sudah memiliki akun?</string>
     <string name="login_di_sini">Login di sini</string>
     <string name="sign_up">Sign Up</string>
+    <string name="save_icon">Save icon</string>
+    <string name="share_icon">Share icon</string>
+    <string name="thumbnail_video">Thumbnail Video</string>
+    <string name="detail_artikel">Detail Artikel</string>
+    <string name="tombol_pengaturan">tombol pengaturan</string>
+    <string name="buka">Buka</string>
+    <string name="video_terbaru">Video Terbaru</string>
 </resources>

@@ -12,7 +12,9 @@ import com.capstone.parentmind.data.remote.response.BasicResponse
 import com.capstone.parentmind.data.remote.response.LoginResponse
 import retrofit2.HttpException
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class UserRepository @Inject constructor(
    private val apiService: ApiService,
    private val userPreference: AuthPreference

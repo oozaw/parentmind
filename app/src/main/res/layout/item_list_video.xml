@@ -27,7 +27,7 @@
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:shapeAppearanceOverlay="@style/ImageView.Corner"
-            android:contentDescription="Thumbnail Video"
+            android:contentDescription="@string/thumbnail_video"
             tools:src="@tools:sample/backgrounds/scenic"/>
 
         <TextView

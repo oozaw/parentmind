@@ -14,9 +14,9 @@ interface ArticleDao {
     @Update
     fun updateArticle(article: ArticleEntity)
 
-    @Query("DELETE FROM article WHERE bookmark = 0")
-    fun deleteAll()
-
-    @Query("SELECT EXISTS(SELECT * FROM article WHERE id = :id AND bookmark = 1)")
-    fun isArticleBookmarked(id: Int): Boolean
+//    @Query("DELETE FROM article WHERE bookmark = 0")
+//    fun deleteAll()
+//
+//    @Query("SELECT EXISTS(SELECT * FROM article WHERE id = :id AND bookmark = 1)")
+//    fun isArticleBookmarked(id: Int): Boolean
 }

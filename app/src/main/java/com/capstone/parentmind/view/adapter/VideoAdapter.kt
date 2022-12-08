@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.capstone.parentmind.R
 import com.capstone.parentmind.data.remote.response.ArticlesItem
-import com.capstone.parentmind.databinding.ItemListArtikelBinding
 import com.capstone.parentmind.databinding.ItemListVideoBinding
 import com.capstone.parentmind.view.video.detail.DetailVideoActivity
 

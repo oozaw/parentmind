@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.capstone.parentmind.R
 import com.capstone.parentmind.databinding.FragmentArticleBinding
+import com.capstone.parentmind.view.article.main.MainArticleActivity
 import com.capstone.parentmind.view.video.main.MainVideoActivity
 
 class ArticleFragment : Fragment() {
@@ -36,6 +37,12 @@ class ArticleFragment : Fragment() {
    }
 
    private fun setupAction() {
+      binding.btnArticle.setOnClickListener {
+         Intent(requireActivity(), MainArticleActivity::class.java).also { intent ->
+            startActivity(intent)
+         }
+      }
+
       binding.btnVideo.setOnClickListener {
          Intent(requireActivity(), MainVideoActivity::class.java).also { intent ->
             startActivity(intent)

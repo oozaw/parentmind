@@ -13,8 +13,9 @@ import com.capstone.parentmind.utils.makeToast
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DetailVideoActivity : AppCompatActivity() {
     private var _binding: ActivityDetailVideoBinding? = null
     private val binding get() = _binding!!
