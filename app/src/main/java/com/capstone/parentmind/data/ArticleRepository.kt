@@ -47,6 +47,17 @@ class ArticleRepository @Inject constructor(
         emitSource(data)
     }
 
+    fun getAllTypeArticlePaging(): LiveData<PagingData<ArticlesItem>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20
+            ),
+            pagingSourceFactory = {
+                ArticlePagingSource(apiService, token, "")
+            }
+        ).liveData
+    }
+
     fun getArticlePaging(type: String): LiveData<PagingData<ArticlesItem>> {
         return Pager(
             config = PagingConfig(

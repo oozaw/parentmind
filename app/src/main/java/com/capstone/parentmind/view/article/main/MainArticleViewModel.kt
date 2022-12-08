@@ -13,7 +13,7 @@ class MainArticleViewModel @Inject constructor (private val repository: ArticleR
 
     fun getArticles(type: String) = repository.getArticlePaging(type).cachedIn(viewModelScope)
 
-//    fun getAllArticles() = articleRepository.getAllArticles()
+    fun getAllArticles() = repository.getAllTypeArticlePaging()
 //
 //    fun getDetailArticles(id: Int) = articleRepository.getDetailArticles(id)
 //

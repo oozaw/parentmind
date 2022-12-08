@@ -4,28 +4,214 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     tools:context=".view.article.ArticleFragment">
 
-    <Button
-        android:id="@+id/btn_article"
-        android:layout_width="0dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Artikel"
+        app:cardElevation="4dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <Button
-        android:id="@+id/btn_video"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Video"
-        app:layout_constraintTop_toBottomOf="@id/btn_article"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/tv_label_page"
+                style="@style/body.bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="20dp"
+                android:text="@string/artikel_dan_video"
+                android:textSize="20sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <ImageView
+                android:id="@+id/btn_search"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="14dp"
+                android:src="@drawable/ic_search"
+                app:tint="@color/light_blue"
+                app:layout_constraintTop_toTopOf="@id/tv_label_page"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_page"
+                app:layout_constraintEnd_toStartOf="@id/btn_favorite"
+                android:contentDescription="@string/tombol_pencarian" />
+
+            <ImageView
+                android:id="@+id/btn_favorite"
+                android:layout_width="31dp"
+                android:layout_height="31dp"
+                android:layout_marginEnd="18dp"
+                android:src="@drawable/ic_favorite_filled"
+                app:layout_constraintTop_toTopOf="@id/tv_label_page"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_page"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:tint="@color/light_blue"
+                android:contentDescription="@string/tombol_favorite" />
+
+            <TextView
+                android:id="@+id/tv_label_desc"
+                style="@style/body.medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/mau_baca_artikel_atau_nonton_video"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_page"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_article"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                app:cardElevation="2dp"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="@color/light_blue"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_desc"
+                app:layout_constraintStart_toStartOf="@id/tv_label_desc"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/iv_article_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/article_illustration"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:contentDescription="@string/ilustrasi_artikel" />
+
+                    <TextView
+                        android:id="@+id/tv_article_header"
+                        style="@style/body.medium"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/baca_aja_deh"
+                        android:textColor="@color/white"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/iv_article_icon"/>
+
+                    <TextView
+                        style="@style/body.description.gray"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/temukan_artikel_menarik_disini"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="@id/tv_article_header"
+                        app:layout_constraintTop_toBottomOf="@id/tv_article_header"
+                        app:layout_constraintStart_toStartOf="@id/tv_article_header"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_video"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                app:cardElevation="2dp"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="@color/light_blue"
+                app:layout_constraintTop_toTopOf="@id/cv_article"
+                app:layout_constraintBottom_toBottomOf="@id/cv_article"
+                app:layout_constraintEnd_toEndOf="@id/tv_label_desc">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/iv_video_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/article_illustration"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:contentDescription="@string/ilustrasi_video" />
+
+                    <TextView
+                        android:id="@+id/tv_video_header"
+                        style="@style/body.medium"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:text="@string/mau_nonton"
+                        android:textColor="@color/white"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/iv_video_icon"/>
+
+                    <TextView
+                        style="@style/body.description.gray"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tonton_video_keren_disini"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="@id/tv_video_header"
+                        app:layout_constraintTop_toBottomOf="@id/tv_video_header"
+                        app:layout_constraintStart_toStartOf="@id/tv_video_header"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/cv_header"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_list_article"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:listitem="@layout/item_list_video"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <include
+        android:id="@+id/view_loading"
+        layout="@layout/view_loading"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/cv_header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

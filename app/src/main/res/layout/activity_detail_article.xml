@@ -47,24 +47,25 @@
                 app:layout_constraintStart_toEndOf="@id/btn_back_toolbar"/>
 
             <ImageView
-                android:id="@+id/btn_settings_toolbar"
+                android:id="@+id/btn_favorite"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_width="26dp"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginEnd="18dp"
-                android:src="@drawable/gear"
+                android:src="@drawable/ic_favorite_filled"
                 app:tint="@color/white"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:contentDescription="@string/tombol_pengaturan" />
+                android:contentDescription="@string/tombol_favorite" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,6 +121,7 @@
                 android:id="@+id/btn_save_article"
                 android:layout_width="99dp"
                 android:layout_height="34dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/bg_button_stroke_black"
                 android:drawableLeft="@drawable/ic_favorite"
                 android:fontFamily="@font/cabin_medium"

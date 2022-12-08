@@ -30,7 +30,8 @@
                 android:src="@drawable/left_arrow"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:tint="@color/white" />
+                app:tint="@color/white"
+                android:contentDescription="@string/tombol_kembali" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/search_input_layout"
@@ -52,23 +53,25 @@
                     style="@style/body"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Cari video"
+                    android:hint="@string/cari_artikel"
                     android:paddingTop="8dp"
                     android:paddingBottom="12dp"
                     android:background="@drawable/bg_input_search"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
-                android:id="@+id/btn_settings_toolbar"
+                android:id="@+id/btn_favorite"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_width="28dp"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginEnd="18dp"
-                android:src="@drawable/bell"
+                android:src="@drawable/ic_favorite_filled"
                 app:tint="@color/white"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="@string/tombol_favorite" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.Toolbar>
@@ -130,7 +133,7 @@
                         android:background="@drawable/bg_button_stroke"
                         app:backgroundTint="@null"
                         android:fontFamily="@font/cabin_medium"
-                        android:text="Artikel Terbaru"
+                        android:text="@string/artikel_terbaru"
                         android:textAllCaps="false"
                         android:textColor="@color/blueButton"
                         android:textSize="10sp"
@@ -160,8 +163,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     app:cardCornerRadius="14dp"
                     app:cardElevation="2dp"
                     app:layout_constraintTop_toBottomOf="@id/ln_btn_article"
@@ -236,7 +239,7 @@
                     android:id="@+id/rv_list_article"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="8dp"
                     tools:listitem="@layout/item_list_article"
                     android:nestedScrollingEnabled="false"
                     app:layout_constraintStart_toStartOf="parent"

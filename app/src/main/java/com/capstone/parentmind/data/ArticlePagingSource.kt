@@ -14,12 +14,21 @@ class ArticlePagingSource(
    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ArticlesItem> {
       return try {
          val position = params.key ?: INITIAL_PAGE_INDEX
-         val responseData = apiService.getArticlesTypePage(
-            token = token,
-            type = type,
-            page = position,
-            size = params.loadSize
-         )
+         val responseData = if (type.isEmpty()) {
+            apiService.getAllArticlesPage(
+               token = token,
+               page = position,
+               size = params.loadSize
+            )
+         } else {
+            apiService.getArticlesTypePage(
+               token = token,
+               type = type,
+               page = position,
+               size = params.loadSize
+            )
+         }
+
          LoadResult.Page(
             data = responseData.articles,
             prevKey = if (position == INITIAL_PAGE_INDEX) null else position - 1,

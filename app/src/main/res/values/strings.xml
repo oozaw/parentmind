@@ -64,4 +64,18 @@
     <string name="tombol_pengaturan">tombol pengaturan</string>
     <string name="buka">Buka</string>
     <string name="video_terbaru">Video Terbaru</string>
+    <string name="artikel_dan_video">Artikel dan Video</string>
+    <string name="mau_baca_artikel_atau_nonton_video">Mau baca artikel atau nonton video?</string>
+    <string name="tonton_video_keren_disini">Tonton video keren disini!</string>
+    <string name="mau_nonton">Mau nonton</string>
+    <string name="baca_aja_deh">Baca aja deh</string>
+    <string name="temukan_artikel_menarik_disini">Temukan artikel menarik disini!</string>
+    <string name="ilustrasi_artikel">Ilustrasi artikel</string>
+    <string name="ilustrasi_video">Ilustrasi video</string>
+    <string name="background_icon_play_video">Background icon play video</string>
+    <string name="tombol_favorite">tombol favorite</string>
+    <string name="cari_video">Cari video</string>
+    <string name="tombol_pencarian">tombol pencarian</string>
+    <string name="artikel_terbaru">Artikel Terbaru</string>
+    <string name="cari_artikel">Cari artikel</string>
 </resources>
