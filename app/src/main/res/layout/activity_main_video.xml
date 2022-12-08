@@ -135,7 +135,7 @@
                         android:fontFamily="@font/cabin_medium"
                         android:text="@string/video_terbaru"
                         android:textAllCaps="false"
-                        android:textColor="@color/blueButton"
+                        android:textColor="@color/blue"
                         android:textSize="10sp" />
 
                     <Button
@@ -149,10 +149,9 @@
                         android:background="@drawable/bg_button_stroke"
                         app:backgroundTint="@null"
                         android:fontFamily="@font/cabin_medium"
-
                         android:text="@string/vidio_populer"
                         android:textAllCaps="false"
-                        android:textColor="@color/blueButton"
+                        android:textColor="@color/blue"
                         android:textSize="10sp"
                         tools:ignore="TouchTargetSizeCheck" />
                 </LinearLayout>

@@ -18,6 +18,7 @@ import com.capstone.parentmind.view.adapter.LoadingStateAdapter
 import com.capstone.parentmind.view.adapter.VideoPagingAdapter
 import com.capstone.parentmind.view.article.main.MainArticleActivity
 import com.capstone.parentmind.view.article.main.MainArticleViewModel
+import com.capstone.parentmind.view.search.SearchActivity
 import com.capstone.parentmind.view.video.main.MainVideoActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -70,6 +71,12 @@ class ArticleFragment : Fragment() {
 
       binding.cvVideo.setOnClickListener {
          Intent(requireActivity(), MainVideoActivity::class.java).also { intent ->
+            startActivity(intent)
+         }
+      }
+
+      binding.btnSearch.setOnClickListener {
+         Intent(requireActivity(), SearchActivity::class.java).also { intent ->
             startActivity(intent)
          }
       }

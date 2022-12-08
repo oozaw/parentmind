@@ -51,6 +51,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/search_edit_text"
                     style="@style/body"
+                    android:lines="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/cari_artikel"
@@ -135,7 +136,7 @@
                         android:fontFamily="@font/cabin_medium"
                         android:text="@string/artikel_terbaru"
                         android:textAllCaps="false"
-                        android:textColor="@color/blueButton"
+                        android:textColor="@color/light_blue"
                         android:textSize="10sp"
                         tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
@@ -153,7 +154,7 @@
 
                         android:text="@string/artikel_populer"
                         android:textAllCaps="false"
-                        android:textColor="@color/blueButton"
+                        android:textColor="@color/light_blue"
                         android:textSize="10sp"
                         tools:ignore="TouchTargetSizeCheck" />
                 </LinearLayout>

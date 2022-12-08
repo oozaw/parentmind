@@ -25,7 +25,7 @@
     <string name="deskripsi">Deskripsi</string>
     <string name="like">like</string>
     <string name="konsul">Konsul</string>
-    <string name="cari">cari</string>
+    <string name="cari">Cari</string>
     <string name="title_artikel">Judul Artikel</string>
     <string name="save">Simpan</string>
     <string name="skrip_artikel">Skrip artikel</string>
@@ -78,4 +78,18 @@
     <string name="tombol_pencarian">tombol pencarian</string>
     <string name="artikel_terbaru">Artikel Terbaru</string>
     <string name="cari_artikel">Cari artikel</string>
+    <string name="cari_artikel_atau_video">Cari artikel atau video</string>
+    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="laki_laki">Laki-laki</string>
+    <string name="perempuan">Perempuan</string>
+    <string name="kategori">Kategori</string>
+    <string name="_1_2_th">1-2 th</string>
+    <string name="_3_4_th">3-4 th</string>
+    <string name="_5_6_th">5-6 th</string>
+    <string name="_7_12_th">7-12 th</string>
+    <string name="_13_14_th">13-14 th</string>
+    <string name="_17_21_th">17-21 th</string>
+    <string name="jenis_media">Jenis Media</string>
+    <string name="artikel">Artikel</string>
+    <string name="video">Video</string>
 </resources>
