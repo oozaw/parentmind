@@ -13,12 +13,17 @@ import com.capstone.parentmind.databinding.FragmentProfileBinding
 import com.capstone.parentmind.view.home.HomeActivity
 import com.capstone.parentmind.view.home.HomeViewModel
 import com.capstone.parentmind.view.login.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
    private var _binding: FragmentProfileBinding? = null
    private val binding get() = _binding!!
+
+   private lateinit var auth: FirebaseAuth
 
    private val viewModel: HomeViewModel by viewModels()
 
@@ -35,6 +40,8 @@ class ProfileFragment : Fragment() {
 
    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
       super.onViewCreated(view, savedInstanceState)
+
+      auth = Firebase.auth
 
       setupAction()
       setupView()
@@ -69,7 +76,7 @@ class ProfileFragment : Fragment() {
    }
 
    private fun logout() {
-      HomeActivity.auth.signOut()
+      auth.signOut()
       viewModel.logout()
       Intent(requireActivity(), LoginActivity::class.java).also { intent ->
          intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

@@ -36,7 +36,7 @@
     <string name="name">name_use</string>
     <string name="nama_user">Nama Pengguna</string>
     <string name="time_upload">Waktu Upload</string>
-    <string name="comment">comment</string>
+    <string name="comment">Balasan</string>
     <string name="total_like">Like</string>
     <string name="forum">Forum</string>
     <string name="komunitas">Komunitas</string>
@@ -96,4 +96,6 @@
     <string name="tombol_edit">tombol edit</string>
     <string name="oops">Oops!</string>
     <string name="this_feature_is_under_development">This feature is under development</string>
+    <string name="tombol_suka">tombol suka</string>
+    <string name="judul_diskusi">Judul diskusi</string>
 </resources>

@@ -12,13 +12,21 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.capstone.parentmind.R
 import com.capstone.parentmind.data.Result
+import com.capstone.parentmind.data.remote.response.User
 import com.capstone.parentmind.databinding.ActivityRegisterBinding
+import com.capstone.parentmind.model.UserFirebase
 import com.capstone.parentmind.utils.checkEmailPattern
 import com.capstone.parentmind.utils.makeToast
 import com.capstone.parentmind.view.login.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -29,6 +37,10 @@ class RegisterActivity : AppCompatActivity() {
 
    private lateinit var datePickerDialog: DatePickerDialog
 
+   private lateinit var auth: FirebaseAuth
+   private lateinit var db: FirebaseDatabase
+   private lateinit var userRef: DatabaseReference
+
    private val vIewModel: RegisterVIewModel by viewModels()
 
    override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +48,14 @@ class RegisterActivity : AppCompatActivity() {
       setTheme(R.style.Theme_ParentMind)
       _binding = ActivityRegisterBinding.inflate(layoutInflater)
       setContentView(binding.root)
+
+      // Initialize Firebase Auth
+      auth = Firebase.auth
+
+      // Initialize Firebase realtime database
+      db = Firebase.database
+
+      userRef = db.reference.child(LoginActivity.USERS_CHILD)
 
       setupView()
       setupAction()
@@ -84,14 +104,10 @@ class RegisterActivity : AppCompatActivity() {
                      showLoading(true)
                   }
                   is Result.Success -> {
-                     showLoading(false)
                      if (result.data.status) {
-                        Intent(this, LoginActivity::class.java).also { intent ->
-                           makeToast(this, "Register berhasil, silahkan login")
-                           startActivity(intent)
-                           finish()
-                        }
+                        createUserWithEmail(email, password)
                      } else {
+                        showLoading(false)
                         makeToast(this, "Register gagal, ${result.data.message}")
                      }
                   }
@@ -107,6 +123,35 @@ class RegisterActivity : AppCompatActivity() {
       binding.tvLoginButton.setOnClickListener {
          val loginIntent = Intent(this, LoginActivity::class.java)
          startActivity(loginIntent)
+      }
+   }
+
+   private fun createUserWithEmail(email: String, password: String) {
+      auth.createUserWithEmailAndPassword(email, password)
+         .addOnCompleteListener(this) { task ->
+            showLoading(false)
+            if (task.isSuccessful) {
+               showLoading(false)
+               // Sign in success, update UI with the signed-in user's information
+               Log.d(TAG, "createUserWithEmail:success")
+//               val userAuth = auth.currentUser
+               updateUI()
+            } else {
+               showLoading(false)
+               // If sign in fails, display a message to the user.
+               Log.w(TAG, "createUserWithEmail:failure", task.exception)
+               makeToast(this, "Register gagal, ${task.exception?.message.toString()}")
+            }
+         }
+   }
+
+   private fun updateUI() {
+      Intent(this, LoginActivity::class.java).also { intent ->
+         if (auth.currentUser != null) auth.signOut()
+         auth.signOut()
+         makeToast(this, "Register berhasil, silahkan login")
+         startActivity(intent)
+         finish()
       }
    }
 

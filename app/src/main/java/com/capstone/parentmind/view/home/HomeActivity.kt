@@ -23,6 +23,8 @@ class HomeActivity : AppCompatActivity() {
    private var _binding: ActivityHomeBinding? = null
    private val binding get()= _binding!!
 
+   private lateinit var auth: FirebaseAuth
+
    private val viewModel: HomeViewModel by viewModels()
 
    override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,10 +53,9 @@ class HomeActivity : AppCompatActivity() {
 
       viewModel.checkLogin().observe(this) { isLogin ->
          val isAuth = auth.currentUser != null
-         if (!(isLogin || isAuth)) {
+         if (!(isLogin && isAuth)) {
             Intent(this, LoginActivity::class.java).also { intent ->
                startActivity(intent)
-               makeToast(this, "Silahkan login terlebih dahulu")
                finish()
             }
          }
@@ -64,9 +65,5 @@ class HomeActivity : AppCompatActivity() {
    override fun onDestroy() {
       super.onDestroy()
       _binding = null
-   }
-
-   companion object {
-      lateinit var auth: FirebaseAuth
    }
 }
