@@ -8,7 +8,6 @@ plugins {
 }
 
 android {
-    namespace 'com.capstone.parentmind'
     compileSdk 33
 
     defaultConfig {
@@ -19,6 +18,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'BASE_URL', BASE_URL
+        buildConfigField 'String', 'API_KEY', API_KEY
     }
 
     buildTypes {
@@ -52,10 +54,16 @@ dependencies {
 
     // layout or view
     implementation 'com.google.android.material:material:1.7.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4' // constraint layout
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0' // coordinator layout
     implementation 'androidx.recyclerview:recyclerview:1.2.1' // recycler view
     implementation 'androidx.cardview:cardview:1.0.0' // card view
     implementation 'com.github.bumptech.glide:glide:4.14.2' // glide
+    implementation 'de.hdodenhof:circleimageview:3.1.0' // circle image view
+
+    // navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
     // firebase
     implementation 'com.firebaseui:firebase-ui-database:8.0.0'
@@ -122,4 +130,8 @@ dependencies {
     // mock web server
     androidTestImplementation "com.squareup.okhttp3:mockwebserver:4.9.3"
     androidTestImplementation "com.squareup.okhttp3:okhttp-tls:4.9.3"
+
+    // youtube player
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
+    implementation fileTree(dir: 'libs', includes: ['*.jar'])
 }

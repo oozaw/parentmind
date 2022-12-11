@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/profile_background"
+    tools:context=".view.profile.ProfileFragment">
+
+    <TextView
+        android:id="@+id/tv_label_page"
+        style="@style/body.bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/profil"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_profile_picture"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="92dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/user_illustration" />
+
+    <ImageView
+        android:id="@+id/iv_edit_profile_picture_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="-5dp"
+        android:layout_marginEnd="-10dp"
+        android:src="@drawable/pen_bg"
+        app:layout_constraintBottom_toBottomOf="@id/civ_profile_picture"
+        app:layout_constraintEnd_toEndOf="@id/civ_profile_picture"
+        android:contentDescription="@string/tombol_edit" />
+
+    <TextView
+        android:id="@+id/tv_fullname_profile"
+        style="@style/body.bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/civ_profile_picture"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Afri Yutara"/>
+
+    <TextView
+        android:id="@+id/tv_email_profile"
+        style="@style/body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_fullname_profile"
+        app:layout_constraintStart_toStartOf="@id/tv_fullname_profile"
+        app:layout_constraintEnd_toEndOf="@id/tv_fullname_profile"
+        tools:text="afriyutara@gmail.com"/>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_email_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_first"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="12dp"
+                android:elevation="6dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/iv_info_profile"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/list"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tv_info_profile"
+                        style="@style/body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="Edit Informasi Profil"
+                        app:layout_constraintTop_toTopOf="@id/iv_info_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_info_profile"
+                        app:layout_constraintStart_toEndOf="@id/iv_info_profile"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/right_arrow"
+                        app:layout_constraintTop_toTopOf="@id/iv_info_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_info_profile"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!--            -->
+                    <ImageView
+                        android:id="@+id/iv_notif_profile"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginTop="12dp"
+                        android:src="@drawable/bell"
+                        app:layout_constraintTop_toBottomOf="@id/iv_info_profile"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tv_notif_profile"
+                        style="@style/body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Notifikasi"
+                        app:layout_constraintTop_toTopOf="@id/iv_notif_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_notif_profile"
+                        app:layout_constraintStart_toStartOf="@id/tv_info_profile"/>
+
+                    <TextView
+                        style="@style/body.link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:text="ON"
+                        android:fontFamily="@font/cabin_regular"
+                        app:layout_constraintTop_toTopOf="@id/iv_notif_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_notif_profile"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <!--            -->
+                    <ImageView
+                        android:id="@+id/iv_language_profile"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginStart="4dp"
+                        android:src="@drawable/languages"
+                        app:layout_constraintTop_toBottomOf="@id/iv_notif_profile"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tv_language_profile"
+                        style="@style/body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bahasa"
+                        app:layout_constraintTop_toTopOf="@id/iv_language_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_language_profile"
+                        app:layout_constraintStart_toStartOf="@id/tv_info_profile"/>
+
+                    <TextView
+                        style="@style/body.link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:text="Bahasa Indonesia"
+                        android:fontFamily="@font/cabin_regular"
+                        app:layout_constraintTop_toTopOf="@id/iv_language_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_language_profile"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_second"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="12dp"
+                android:elevation="6dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/iv_security_profile"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/lock"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tv_security_profile"
+                        style="@style/body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="Keamanan"
+                        app:layout_constraintTop_toTopOf="@id/iv_security_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_security_profile"
+                        app:layout_constraintStart_toEndOf="@id/iv_security_profile"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/right_arrow"
+                        app:layout_constraintTop_toTopOf="@id/iv_security_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_security_profile"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!--            -->
+                    <ImageView
+                        android:id="@+id/iv_theme_profile"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginTop="14dp"
+                        android:src="@drawable/mobile_phone"
+                        app:layout_constraintTop_toBottomOf="@id/iv_security_profile"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tv_theme_profile"
+                        style="@style/body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tema"
+                        app:layout_constraintTop_toTopOf="@id/iv_theme_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_theme_profile"
+                        app:layout_constraintStart_toStartOf="@id/tv_security_profile"/>
+
+                    <TextView
+                        style="@style/body.link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:text="Mode Terang"
+                        android:fontFamily="@font/cabin_regular"
+                        app:layout_constraintTop_toTopOf="@id/iv_theme_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_theme_profile"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_third"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="16dp"
+                android:elevation="6dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/iv_helpdesk_profile"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/question"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tv_helpdesk_profile"
+                        style="@style/body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="Bantuan dan Dukungan"
+                        app:layout_constraintTop_toTopOf="@id/iv_helpdesk_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_helpdesk_profile"
+                        app:layout_constraintStart_toEndOf="@id/iv_helpdesk_profile"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/right_arrow"
+                        app:layout_constraintTop_toTopOf="@id/iv_helpdesk_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_helpdesk_profile"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!--            -->
+                    <ImageView
+                        android:id="@+id/iv_contact_profile"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="14dp"
+                        android:src="@drawable/phone"
+                        app:layout_constraintTop_toBottomOf="@id/iv_helpdesk_profile"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tv_contact_profile"
+                        style="@style/body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kontak"
+                        app:layout_constraintTop_toTopOf="@id/iv_contact_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_contact_profile"
+                        app:layout_constraintStart_toStartOf="@id/tv_helpdesk_profile"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/right_arrow"
+                        app:layout_constraintTop_toTopOf="@id/iv_contact_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_contact_profile"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!--            -->
+                    <ImageView
+                        android:id="@+id/iv_personal_policy_profile"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginTop="14dp"
+                        android:src="@drawable/lock"
+                        app:layout_constraintTop_toBottomOf="@id/iv_contact_profile"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tv_personal_policy_profile"
+                        style="@style/body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kebijakan Pribadi"
+                        app:layout_constraintTop_toTopOf="@id/iv_personal_policy_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_personal_policy_profile"
+                        app:layout_constraintStart_toStartOf="@id/tv_helpdesk_profile"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/right_arrow"
+                        app:layout_constraintTop_toTopOf="@id/iv_personal_policy_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_personal_policy_profile"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!--            -->
+                    <ImageView
+                        android:id="@+id/iv_logout_profile"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginTop="14dp"
+                        android:src="@drawable/logout"
+                        app:layout_constraintTop_toBottomOf="@id/iv_personal_policy_profile"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tv_logout_profile"
+                        style="@style/body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Keluar"
+                        app:layout_constraintTop_toTopOf="@id/iv_logout_profile"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_logout_profile"
+                        app:layout_constraintStart_toStartOf="@id/tv_helpdesk_profile"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
