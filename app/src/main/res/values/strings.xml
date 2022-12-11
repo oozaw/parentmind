@@ -29,7 +29,7 @@
     <string name="title_artikel">Judul Artikel</string>
     <string name="save">Simpan</string>
     <string name="skrip_artikel">Skrip artikel</string>
-    <string name="show_artikel">Menampilkan artikel pencarian Anda</string>
+    <string name="show_artikel">Menampilkan artikel hasil pencarian Anda</string>
     <string name="artikel_populer">Artikel Populer</string>
     <string name="search">search</string>
     <string name="status_diskusi">Deskripsi Diskusi</string>
@@ -42,9 +42,9 @@
     <string name="komunitas">Komunitas</string>
     <string name="title_video">Judul Video</string>
     <string name="skrip_vidio">Skrip Video</string>
-    <string name="show_vidio">Menampilkan video yang Anda cari</string>
+    <string name="show_vidio">Menampilkan video hasil pencarian Anda</string>
     <string name="vidio_populer">Video Populer</string>
-    <string name="search_forum">Cari pembahasan yang ingin Anda inginkan</string>
+    <string name="search_forum">Cari pembahasan yang Anda inginkan</string>
     <string name="notifikasi">Notifikasi</string>
     <string name="username">Username</string>
     <string name="masukkan_nama_lengkap_anda">Masukkan nama lengkap Anda</string>
@@ -98,4 +98,15 @@
     <string name="this_feature_is_under_development">This feature is under development</string>
     <string name="tombol_suka">tombol suka</string>
     <string name="judul_diskusi">Judul diskusi</string>
+    <string name="val_article">article</string>
+    <string name="val_video">video</string>
+    <string name="val_laki_laki">laki-laki</string>
+    <string name="val_perempuan">perempuan</string>
+    <string name="val_1_2th">1-2th</string>
+    <string name="val_3_4th">3-4th</string>
+    <string name="val_5_th">5-6th</string>
+    <string name="val_6_12th">6-12th</string>
+    <string name="val_13_16th">13-16th</string>
+    <string name="val_17_21th">17-21th</string>
+    <string name="maaf_data_yang_anda_cari_tidak_ditemukan">Maaf data yang Anda cari tidak ditemukan!</string>
 </resources>

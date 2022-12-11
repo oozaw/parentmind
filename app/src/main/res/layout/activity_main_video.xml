@@ -33,31 +33,42 @@
                 app:tint="@color/white"
                 android:contentDescription="@string/tombol_kembali" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/search_input_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <ImageView
+                android:id="@+id/iv_search"
                 android:layout_width="280dp"
                 android:layout_height="44dp"
                 android:layout_marginEnd="10dp"
-                app:endIconMode="custom"
-                app:endIconDrawable="@drawable/ic_search"
-                app:endIconTint="@color/light_blue"
-                app:hintEnabled="false"
+                android:src="@drawable/bg_input_search"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:contentDescription="@string/search" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/search_edit_text"
-                    style="@style/body"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/cari_video"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="12dp"
-                    android:background="@drawable/bg_input_search"/>
-            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/tv_search_placeholder"
+                style="@style/body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="2dp"
+                android:text="@string/cari_video"
+                android:textColor="@color/light_gray"
+                app:layout_constraintStart_toStartOf="@id/iv_search"
+                app:layout_constraintTop_toTopOf="@id/iv_search"
+                app:layout_constraintBottom_toBottomOf="@id/iv_search"/>
+
+            <ImageView
+                android:id="@+id/iv_search_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="14dp"
+                android:src="@drawable/ic_search"
+                app:tint="@color/light_blue"
+                app:layout_constraintTop_toTopOf="@id/iv_search"
+                app:layout_constraintBottom_toBottomOf="@id/iv_search"
+                app:layout_constraintEnd_toEndOf="@id/iv_search"
+                android:contentDescription="@string/search" />
 
             <ImageView
                 android:id="@+id/btn_favorite"
@@ -96,6 +107,7 @@
 
                 <Button
                     android:id="@+id/btn_show_video_search"
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="28dp"
                     android:layout_marginTop="6dp"
@@ -216,7 +228,8 @@
                     android:id="@+id/rv_list_video"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -226,6 +239,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <include
+        android:id="@+id/view_empty"
+        layout="@layout/view_empty"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <include
         android:id="@+id/view_loading"

@@ -9,5 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainVideoViewModel @Inject constructor(private val repository: ArticleRepository): ViewModel() {
-   fun videoPaging() = repository.getArticlePaging("video").cachedIn(viewModelScope)
+   fun videoPaging() = repository.getArticle("video").cachedIn(viewModelScope)
+
+   fun getSearchVideo(query: String, gender: String, type: String, category: String) = repository.getSpecificArticle(query = query, gender = gender, type = type, category = category)
 }

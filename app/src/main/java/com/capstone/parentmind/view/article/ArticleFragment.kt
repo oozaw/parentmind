@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
@@ -77,7 +78,7 @@ class ArticleFragment : Fragment() {
 
       binding.btnSearch.setOnClickListener {
          Intent(requireActivity(), SearchActivity::class.java).also { intent ->
-            startActivity(intent)
+            startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity()).toBundle())
          }
       }
    }

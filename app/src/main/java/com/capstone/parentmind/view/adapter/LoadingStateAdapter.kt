@@ -27,10 +27,12 @@ class LoadingStateAdapter(private val retry: () -> Unit) : LoadStateAdapter<Load
       fun bind(loadState: LoadState) {
          if (loadState is LoadState.Error) {
             binding.errorMsg.text = loadState.error.localizedMessage
+            binding.errorMsg.isVisible = false
+//            binding.retryButton.isVisible = !loadState.endOfPaginationReached
+//            binding.errorMsg.isVisible = !loadState.endOfPaginationReached
          }
+         binding.retryButton.isVisible = false
          binding.progressBar.isVisible = loadState is LoadState.Loading
-         binding.retryButton.isVisible = loadState is LoadState.Error
-         binding.errorMsg.isVisible = loadState is LoadState.Error
       }
    }
 }

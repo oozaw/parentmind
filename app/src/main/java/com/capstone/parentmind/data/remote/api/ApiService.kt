@@ -8,38 +8,28 @@ import retrofit2.http.*
 interface ApiService {
    @GET("articles")
    suspend fun getAllArticles(
-      @Header("Authorization") token: String
-   ): ArticleResponse
-
-   @GET("articles")
-   suspend fun getAllArticlesPage(
       @Header("Authorization") token: String,
       @Query("page") page: Int,
       @Query("size") size: Int
    ): ArticleResponse
 
-   @GET("articles/{id}")
-   suspend fun getDetailArticle(
-      @Path("id") id : Int
-   ): ArticleResponse
-
    @GET("articles")
    suspend fun getArticlesType(
-      @Header("Authorization") token: String,
-      @Query("type") type: String
-   ): ArticleResponse
-
-   @GET("articles")
-   suspend fun getArticlesTypePage(
       @Header("Authorization") token: String,
       @Query("type") type: String,
       @Query("page") page: Int,
       @Query("size") size: Int
    ): ArticleResponse
 
-   @GET("articles?type=video")
-   suspend fun getVideo(
-      @Header("Authorization") token: String
+   @GET("articles")
+   suspend fun getSpecificArticle(
+      @Header("Authorization") token: String,
+      @Query("q") query: String,
+      @Query("type") type: String,
+      @Query("gender") gender: String,
+      @Query("category") category: String,
+      @Query("page") page: Int,
+      @Query("size") size: Int
    ): ArticleResponse
 
    @POST("login")

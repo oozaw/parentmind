@@ -79,6 +79,7 @@
 
     <com.capstone.parentmind.view.custom_view.SearchOptionButton
         android:id="@+id/btn_boy"
+        android:tag="@string/val_laki_laki"
         android:focusable="false"
         android:layout_width="104dp"
         android:layout_height="30dp"
@@ -91,6 +92,7 @@
 
     <com.capstone.parentmind.view.custom_view.SearchOptionButton
         android:id="@+id/btn_girl"
+        android:tag="@string/val_perempuan"
         android:focusable="false"
         android:layout_width="104dp"
         android:layout_height="30dp"
@@ -118,6 +120,7 @@
 
     <com.capstone.parentmind.view.custom_view.SearchOptionButton
         android:id="@+id/btn_1_2th"
+        android:tag="@string/val_1_2th"
         android:focusable="false"
         android:layout_width="68dp"
         android:layout_height="30dp"
@@ -137,6 +140,7 @@
 
     <com.capstone.parentmind.view.custom_view.SearchOptionButton
         android:id="@+id/btn_3_4th"
+        android:tag="@string/val_3_4th"
         android:focusable="false"
         android:layout_width="68dp"
         android:layout_height="30dp"
@@ -159,6 +163,7 @@
 
     <com.capstone.parentmind.view.custom_view.SearchOptionButton
         android:id="@+id/btn_5_6th"
+        android:tag="@string/val_5_th"
         android:focusable="false"
         android:layout_width="68dp"
         android:layout_height="30dp"
@@ -180,6 +185,7 @@
 
     <com.capstone.parentmind.view.custom_view.SearchOptionButton
         android:id="@+id/btn_7_12th"
+        android:tag="@string/val_17_21th"
         android:focusable="false"
         android:layout_width="68dp"
         android:layout_height="30dp"
@@ -199,6 +205,7 @@
 
     <com.capstone.parentmind.view.custom_view.SearchOptionButton
         android:id="@+id/btn_13_16th"
+        android:tag="@string/val_13_16th"
         android:focusable="false"
         android:layout_width="68dp"
         android:layout_height="30dp"
@@ -221,6 +228,7 @@
 
     <com.capstone.parentmind.view.custom_view.SearchOptionButton
         android:id="@+id/btn_17_21th"
+        android:tag="@string/val_17_21th"
         android:focusable="false"
         android:layout_width="68dp"
         android:layout_height="30dp"
@@ -257,6 +265,7 @@
 
     <com.capstone.parentmind.view.custom_view.SearchOptionButton
         android:id="@+id/btn_article"
+        android:tag="@string/val_article"
         android:focusable="false"
         android:layout_width="104dp"
         android:layout_height="30dp"
@@ -276,6 +285,7 @@
 
     <com.capstone.parentmind.view.custom_view.SearchOptionButton
         android:id="@+id/btn_video"
+        android:tag="@string/val_video"
         android:focusable="false"
         android:layout_width="104dp"
         android:layout_height="30dp"

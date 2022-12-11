@@ -8,21 +8,27 @@ import com.capstone.parentmind.data.remote.response.ArticlesItem
 class ArticlePagingSource(
    private val apiService: ApiService,
    private val token: String,
-   private val type: String
+   private val gender: String = "",
+   private val query: String = "",
+   private val category: String = "",
+   private val type: String = "",
 ): PagingSource<Int, ArticlesItem>() {
 
    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ArticlesItem> {
       return try {
          val position = params.key ?: INITIAL_PAGE_INDEX
-         val responseData = if (type.isEmpty()) {
-            apiService.getAllArticlesPage(
+         val responseData = if (type.isEmpty() and query.isEmpty() and category.isEmpty()) {
+            apiService.getAllArticles(
                token = token,
                page = position,
                size = params.loadSize
             )
          } else {
-            apiService.getArticlesTypePage(
+            apiService.getSpecificArticle(
                token = token,
+               query = query,
+               gender = gender,
+               category = category,
                type = type,
                page = position,
                size = params.loadSize

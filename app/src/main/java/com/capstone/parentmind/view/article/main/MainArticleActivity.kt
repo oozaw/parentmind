@@ -7,6 +7,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.paging.PagingData
@@ -18,7 +20,9 @@ import com.capstone.parentmind.data.remote.response.ArticlesItem
 import com.capstone.parentmind.databinding.ActivityMainArticleBinding
 import com.capstone.parentmind.view.adapter.ArticlePagingAdapter
 import com.capstone.parentmind.view.adapter.LoadingStateAdapter
+import com.capstone.parentmind.view.adapter.VideoPagingAdapter
 import com.capstone.parentmind.view.article.detail.DetailArticleActivity
+import com.capstone.parentmind.view.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -35,11 +39,25 @@ class MainArticleActivity : AppCompatActivity() {
 
     private lateinit var articleAdapter: ArticlePagingAdapter
 
+    private var isSearching = false
+
+    private lateinit var query: String
+    private lateinit var gender: String
+    private lateinit var category: String
+    private lateinit var type: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_ParentMind)
         _binding = ActivityMainArticleBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        isSearching = intent.getBooleanExtra(SearchActivity.EXTRA_SEARCH, false)
+
+        query = intent.getStringExtra(SearchActivity.EXTRA_QUERY) ?: ""
+        gender = intent.getStringExtra(SearchActivity.EXTRA_GENDER) ?: ""
+        category = intent.getStringExtra(SearchActivity.EXTRA_CATEGORY) ?: ""
+        type = intent.getStringExtra(SearchActivity.EXTRA_TYPE) ?: "article"
 
         articleAdapter = ArticlePagingAdapter()
 
@@ -70,13 +88,35 @@ class MainArticleActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        getArticleData()
+        if (isSearching) {
+            if (query != "") {
+                binding.tvSearchPlaceholder.text = query
+                binding.tvSearchPlaceholder.setTextColor(ContextCompat.getColor(baseContext, R.color.black))
+            }
+
+            binding.btnShowVideoSearch.visibility = View.VISIBLE
+            binding.cvLatestArticle.visibility = View.GONE
+            getSearchedArticleData()
+        } else {
+            getArticleData()
+        }
     }
 
     private fun setupAction() {
         binding.btnBackToolbar.setOnClickListener {
             @Suppress("DEPRECATION")
             onBackPressed()
+        }
+
+        binding.ivSearch.setOnClickListener {
+            if (isSearching) {
+                @Suppress("DEPRECATION")
+                onBackPressed()
+            } else {
+                Intent(this, SearchActivity::class.java).also { intent ->
+                    startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle())
+                }
+            }
         }
     }
 
@@ -90,6 +130,28 @@ class MainArticleActivity : AppCompatActivity() {
                         } else {
                             val latest = articleAdapter.snapshot().items[0]
                             setupLatestArticle(latest)
+                            showLoading(false)
+                        }
+                    }
+                }
+                setupRecyclerView(data)
+            }
+        }
+    }
+
+    private fun getSearchedArticleData() {
+        viewModel.getSearchArticles(query, gender, type, category).observe(this) { data ->
+            lifecycleScope.launchWhenCreated {
+                launch(Dispatchers.Main) {
+                    articleAdapter.loadStateFlow.collectLatest {
+                        if (it.refresh is LoadState.Loading) {
+                            showLoading(true)
+                        } else {
+                            if (articleAdapter.itemCount == 0) {
+                                showEmptyMessage(true)
+                            } else {
+                                showEmptyMessage(false)
+                            }
                             showLoading(false)
                         }
                     }
@@ -135,6 +197,14 @@ class MainArticleActivity : AppCompatActivity() {
             binding.viewLoading.backgroundLoading.alpha = 1f
         } else {
             binding.viewLoading.root.visibility = View.GONE
+        }
+    }
+
+    private fun showEmptyMessage(isEmpty: Boolean) {
+        if (isEmpty) {
+            binding.viewEmpty.root.visibility = View.VISIBLE
+        } else {
+            binding.viewEmpty.root.visibility = View.GONE
         }
     }
 }
