@@ -7,6 +7,22 @@
     android:background="@drawable/profile_background"
     tools:context=".view.profile.ProfileFragment">
 
+    <TextView
+        android:id="@+id/tv_label_page"
+        style="@style/body.bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/profil"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/civ_profile_picture"
         android:layout_width="130dp"
@@ -25,7 +41,8 @@
         android:layout_marginEnd="-10dp"
         android:src="@drawable/pen_bg"
         app:layout_constraintBottom_toBottomOf="@id/civ_profile_picture"
-        app:layout_constraintEnd_toEndOf="@id/civ_profile_picture"/>
+        app:layout_constraintEnd_toEndOf="@id/civ_profile_picture"
+        android:contentDescription="@string/tombol_edit" />
 
     <TextView
         android:id="@+id/tv_fullname_profile"
@@ -37,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@id/civ_profile_picture"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Afri Yutara"/>
+        tools:text="Afri Yutara"/>
 
     <TextView
         android:id="@+id/tv_email_profile"
@@ -48,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_fullname_profile"
         app:layout_constraintStart_toStartOf="@id/tv_fullname_profile"
         app:layout_constraintEnd_toEndOf="@id/tv_fullname_profile"
-        android:text="afriyutara@gmail.com"/>
+        tools:text="afriyutara@gmail.com"/>
 
     <ScrollView
         android:layout_width="0dp"
@@ -131,7 +148,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="6dp"
                         android:text="ON"
-                        android:fontFamily="@font/roboto_regular"
+                        android:fontFamily="@font/cabin_regular"
                         app:layout_constraintTop_toTopOf="@id/iv_notif_profile"
                         app:layout_constraintBottom_toBottomOf="@id/iv_notif_profile"
                         app:layout_constraintEnd_toEndOf="parent"/>
@@ -163,7 +180,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="6dp"
                         android:text="Bahasa Indonesia"
-                        android:fontFamily="@font/roboto_regular"
+                        android:fontFamily="@font/cabin_regular"
                         app:layout_constraintTop_toTopOf="@id/iv_language_profile"
                         app:layout_constraintBottom_toBottomOf="@id/iv_language_profile"
                         app:layout_constraintEnd_toEndOf="parent"/>
@@ -238,7 +255,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="6dp"
                         android:text="Mode Terang"
-                        android:fontFamily="@font/roboto_regular"
+                        android:fontFamily="@font/cabin_regular"
                         app:layout_constraintTop_toTopOf="@id/iv_theme_profile"
                         app:layout_constraintBottom_toBottomOf="@id/iv_theme_profile"
                         app:layout_constraintEnd_toEndOf="parent"/>

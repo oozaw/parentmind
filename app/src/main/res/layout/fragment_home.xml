@@ -11,7 +11,7 @@
         android:id="@+id/iv_background_banner"
         android:layout_width="match_parent"
         android:layout_height="190dp"
-        app:cardElevation="10dp"
+        app:cardElevation="4dp"
         app:cardBackgroundColor="@color/light_blue">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,7 +79,7 @@
                 android:layout_marginEnd="16dp"
                 app:cardBackgroundColor="#ACDEFF"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="6dp">
+                app:cardElevation="4dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -132,7 +132,7 @@
                 android:layout_marginEnd="16dp"
                 app:cardBackgroundColor="#ACDEFF"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="6dp">
+                app:cardElevation="4dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -186,7 +186,7 @@
                 android:layout_marginBottom="16dp"
                 app:cardBackgroundColor="#ACDEFF"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="6dp">
+                app:cardElevation="4dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

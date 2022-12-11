@@ -1,60 +1,87 @@
 package com.capstone.parentmind.view.profile
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.capstone.parentmind.R
+import com.capstone.parentmind.data.remote.response.User
+import com.capstone.parentmind.databinding.FragmentProfileBinding
+import com.capstone.parentmind.view.home.HomeActivity
+import com.capstone.parentmind.view.home.HomeViewModel
+import com.capstone.parentmind.view.login.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
-   // TODO: Rename and change types of parameters
-   private var param1: String? = null
-   private var param2: String? = null
+   private var _binding: FragmentProfileBinding? = null
+   private val binding get() = _binding!!
 
-   override fun onCreate(savedInstanceState: Bundle?) {
-      super.onCreate(savedInstanceState)
-      arguments?.let {
-         param1 = it.getString(ARG_PARAM1)
-         param2 = it.getString(ARG_PARAM2)
-      }
-   }
+   private lateinit var auth: FirebaseAuth
+
+   private val viewModel: HomeViewModel by viewModels()
+
+   private lateinit var user: User
 
    override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?
-   ): View? {
+   ): View {
       // Inflate the layout for this fragment
-      return inflater.inflate(R.layout.fragment_profile, container, false)
+      _binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
+      return binding.root
    }
 
-   companion object {
-      /**
-       * Use this factory method to create a new instance of
-       * this fragment using the provided parameters.
-       *
-       * @param param1 Parameter 1.
-       * @param param2 Parameter 2.
-       * @return A new instance of fragment ProfileFragment.
-       */
-      // TODO: Rename and change types and number of parameters
-      @JvmStatic
-      fun newInstance(param1: String, param2: String) =
-         ProfileFragment().apply {
-            arguments = Bundle().apply {
-               putString(ARG_PARAM1, param1)
-               putString(ARG_PARAM2, param2)
-            }
-         }
+   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+      super.onViewCreated(view, savedInstanceState)
+
+      auth = Firebase.auth
+
+      setupAction()
+      setupView()
+   }
+
+   override fun onStart() {
+      super.onStart()
+
+
+   }
+
+   override fun onDestroy() {
+      super.onDestroy()
+      _binding = null
+   }
+
+   private fun setupAction() {
+      binding.tvLogoutProfile.setOnClickListener {
+         logout()
+      }
+
+      binding.ivLogoutProfile.setOnClickListener {
+         logout()
+      }
+   }
+
+   private fun setupView() {
+      viewModel.getUser().observe(viewLifecycleOwner) {  user ->
+         binding.tvFullnameProfile.text = user.name
+         binding.tvEmailProfile.text = user.email
+      }
+   }
+
+   private fun logout() {
+      auth.signOut()
+      viewModel.logout()
+      Intent(requireActivity(), LoginActivity::class.java).also { intent ->
+         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+         startActivity(intent)
+         requireActivity().finish()
+      }
    }
 }

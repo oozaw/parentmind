@@ -7,25 +7,55 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.capstone.parentmind.R
+import com.capstone.parentmind.data.Result
+import com.capstone.parentmind.data.remote.response.User
 import com.capstone.parentmind.databinding.ActivityRegisterBinding
+import com.capstone.parentmind.model.UserFirebase
 import com.capstone.parentmind.utils.checkEmailPattern
+import com.capstone.parentmind.utils.makeToast
 import com.capstone.parentmind.view.login.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
-
+@AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
    private var _binding: ActivityRegisterBinding? = null
    private val binding get() = _binding!!
 
    private lateinit var datePickerDialog: DatePickerDialog
 
+   private lateinit var auth: FirebaseAuth
+   private lateinit var db: FirebaseDatabase
+   private lateinit var userRef: DatabaseReference
+
+   private val vIewModel: RegisterVIewModel by viewModels()
+
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
+      setTheme(R.style.Theme_ParentMind)
       _binding = ActivityRegisterBinding.inflate(layoutInflater)
       setContentView(binding.root)
+
+      // Initialize Firebase Auth
+      auth = Firebase.auth
+
+      // Initialize Firebase realtime database
+      db = Firebase.database
+
+      userRef = db.reference.child(LoginActivity.USERS_CHILD)
 
       setupView()
       setupAction()
@@ -42,6 +72,7 @@ class RegisterActivity : AppCompatActivity() {
 
       // validation
       checkFullname()
+      checkUsername()
       checkEmailInput()
       checkPasswordInput()
       checkPasswordConfirmInput()
@@ -57,9 +88,70 @@ class RegisterActivity : AppCompatActivity() {
          super.onBackPressed()
       }
 
+      binding.btnRegister.setOnClickListener {
+         showLoading(true)
+         hideKeyboard()
+
+         val name = binding.fullnameEditText.text.toString()
+         val username = binding.usernameEditText.text.toString()
+         val email = binding.emailEditText.text.toString()
+         val password = binding.passwordEditText.text.toString()
+
+         vIewModel.register(name, username, email, password).observe(this) {
+            it?.let { result ->
+               when (result) {
+                  is Result.Loading -> {
+                     showLoading(true)
+                  }
+                  is Result.Success -> {
+                     if (result.data.status) {
+                        createUserWithEmail(email, password)
+                     } else {
+                        showLoading(false)
+                        makeToast(this, "Register gagal, ${result.data.message}")
+                     }
+                  }
+                  is Result.Error -> {
+                     showLoading(false)
+                     makeToast(this, "Terjadi error, ${result.error}")
+                  }
+               }
+            }
+         }
+      }
+
       binding.tvLoginButton.setOnClickListener {
          val loginIntent = Intent(this, LoginActivity::class.java)
          startActivity(loginIntent)
+      }
+   }
+
+   private fun createUserWithEmail(email: String, password: String) {
+      auth.createUserWithEmailAndPassword(email, password)
+         .addOnCompleteListener(this) { task ->
+            showLoading(false)
+            if (task.isSuccessful) {
+               showLoading(false)
+               // Sign in success, update UI with the signed-in user's information
+               Log.d(TAG, "createUserWithEmail:success")
+//               val userAuth = auth.currentUser
+               updateUI()
+            } else {
+               showLoading(false)
+               // If sign in fails, display a message to the user.
+               Log.w(TAG, "createUserWithEmail:failure", task.exception)
+               makeToast(this, "Register gagal, ${task.exception?.message.toString()}")
+            }
+         }
+   }
+
+   private fun updateUI() {
+      Intent(this, LoginActivity::class.java).also { intent ->
+         if (auth.currentUser != null) auth.signOut()
+         auth.signOut()
+         makeToast(this, "Register berhasil, silahkan login")
+         startActivity(intent)
+         finish()
       }
    }
 
@@ -151,15 +243,28 @@ class RegisterActivity : AppCompatActivity() {
          override fun onTextChanged(s: CharSequence?, start: Int, before: Int, after: Int) {
             val passwordConfirmValue = binding.passwordConfirmEditText.text.toString()
 
-            if (s.toString() == passwordConfirmValue) {
-               binding.passwordConfirmInputLayout.isErrorEnabled = false
-               binding.passwordConfirmInputLayout.error = null
+            if (passwordConfirmValue.isNotEmpty()) {
+               if (s.toString() == passwordConfirmValue) {
+                  binding.passwordConfirmInputLayout.isErrorEnabled = false
+                  binding.passwordConfirmInputLayout.error = null
+                  setButtonStatus()
+               } else {
+                  binding.passwordConfirmInputLayout.isErrorEnabled = true
+                  binding.passwordConfirmInputLayout.error = "Kata sandi tidak sesuai"
+                  setButtonStatus()
+               }
+            }
+
+            if (s.toString().length >= 6) {
+               inputLayout.isErrorEnabled = false
+               inputLayout.error = null
                setButtonStatus()
             } else {
-               binding.passwordConfirmInputLayout.isErrorEnabled = true
-               binding.passwordConfirmInputLayout.error = "Kata sandi tidak sesuai"
+               inputLayout.isErrorEnabled = true
+               inputLayout.error = "Password minimal harus berisi 6 karakter"
                setButtonStatus()
             }
+
          }
 
          override fun afterTextChanged(s: Editable?) {
@@ -224,11 +329,41 @@ class RegisterActivity : AppCompatActivity() {
       })
    }
 
+   private fun checkUsername() {
+      val inputLayout = binding.usernameInputLayout
+      val editText = inputLayout.editText
+
+      editText?.addTextChangedListener(object: TextWatcher {
+         override fun beforeTextChanged(s: CharSequence?, start: Int, before: Int, after: Int) {
+
+         }
+
+         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, after: Int) {
+
+            if (s.toString().length < 6) {
+               inputLayout.isErrorEnabled = true
+               inputLayout.error = "Username minimal harus berisi 6 karakter"
+               setButtonStatus()
+            } else {
+               inputLayout.isErrorEnabled = false
+               inputLayout.error = null
+               setButtonStatus()
+            }
+         }
+
+         override fun afterTextChanged(s: Editable?) {
+
+         }
+      })
+   }
+
    private fun setButtonStatus() {
       val isFullnameNull = binding.fullnameEditText.text.isNullOrEmpty()
       val isFullnameError = binding.fullnameInputLayout.isErrorEnabled
       val isEmailNull = binding.emailEditText.text.isNullOrEmpty()
       val isEmailError = binding.emailInputLayout.isErrorEnabled
+      val isUsernameNull = binding.usernameEditText.text.isNullOrEmpty()
+      val isUsernameError = binding.usernameInputLayout.isErrorEnabled
 
       val listColorBirthdateButton = binding.btnBirthdatePicker.textColors
       val currentColor = binding.btnBirthdatePicker.currentTextColor
@@ -241,10 +376,27 @@ class RegisterActivity : AppCompatActivity() {
 
       binding.btnRegister.isEnabled =
          (!isFullnameNull && !isFullnameError
+                 && !isUsernameNull && !isUsernameError
                  && !isEmailNull && !isEmailError
                  && !isBirthdateNull
                  && !isPasswordNull && !isPasswordError
                  && !isPasswordConfirmNull && !isPasswordConfirmError)
+   }
+
+   private fun showLoading(isLoading: Boolean) {
+      if (isLoading) {
+         binding.viewLoading.root.visibility = View.VISIBLE
+      } else {
+         binding.viewLoading.root.visibility = View.GONE
+      }
+   }
+
+   private fun hideKeyboard() {
+      val imm: InputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+      val windowHeightMethod = InputMethodManager::class.java.getMethod("getInputMethodWindowVisibleHeight")
+      val height = windowHeightMethod.invoke(imm) as Int
+      @Suppress("DEPRECATION")
+      if(height > 0) imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
    }
 
    companion object {

@@ -1,60 +1,127 @@
 package com.capstone.parentmind.view.article
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
+import androidx.paging.PagingData
+import androidx.recyclerview.widget.GridLayoutManager
 import com.capstone.parentmind.R
+import com.capstone.parentmind.data.remote.response.ArticlesItem
+import com.capstone.parentmind.databinding.FragmentArticleBinding
+import com.capstone.parentmind.view.adapter.LoadingStateAdapter
+import com.capstone.parentmind.view.adapter.VideoPagingAdapter
+import com.capstone.parentmind.view.article.main.MainArticleActivity
+import com.capstone.parentmind.view.article.main.MainArticleViewModel
+import com.capstone.parentmind.view.search.SearchActivity
+import com.capstone.parentmind.view.video.main.MainVideoActivity
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ArticleFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class ArticleFragment : Fragment() {
-   // TODO: Rename and change types of parameters
-   private var param1: String? = null
-   private var param2: String? = null
 
-   override fun onCreate(savedInstanceState: Bundle?) {
-      super.onCreate(savedInstanceState)
-      arguments?.let {
-         param1 = it.getString(ARG_PARAM1)
-         param2 = it.getString(ARG_PARAM2)
-      }
-   }
+   private var _binding: FragmentArticleBinding? = null
+   private val binding get() = _binding!!
+
+   private val viewModel: MainArticleViewModel by viewModels()
+
+   private lateinit var articleAdapter: VideoPagingAdapter
 
    override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?
-   ): View? {
+   ): View {
       // Inflate the layout for this fragment
-      return inflater.inflate(R.layout.fragment_article, container, false)
+      _binding = FragmentArticleBinding.inflate(layoutInflater, container, false)
+      return binding.root
    }
 
-   companion object {
-      /**
-       * Use this factory method to create a new instance of
-       * this fragment using the provided parameters.
-       *
-       * @param param1 Parameter 1.
-       * @param param2 Parameter 2.
-       * @return A new instance of fragment ArticleFragment.
-       */
-      // TODO: Rename and change types and number of parameters
-      @JvmStatic
-      fun newInstance(param1: String, param2: String) =
-         ArticleFragment().apply {
-            arguments = Bundle().apply {
-               putString(ARG_PARAM1, param1)
-               putString(ARG_PARAM2, param2)
-            }
+   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+      super.onViewCreated(view, savedInstanceState)
+
+      articleAdapter = VideoPagingAdapter(true)
+
+      setupView()
+      setupAction()
+   }
+
+   override fun onDestroy() {
+      super.onDestroy()
+      _binding = null
+   }
+
+   private fun setupView() {
+      getArticleData()
+   }
+
+   private fun setupAction() {
+      binding.cvArticle.setOnClickListener {
+         Intent(requireActivity(), MainArticleActivity::class.java).also { intent ->
+            startActivity(intent)
          }
+      }
+
+      binding.cvVideo.setOnClickListener {
+         Intent(requireActivity(), MainVideoActivity::class.java).also { intent ->
+            startActivity(intent)
+         }
+      }
+
+      binding.btnSearch.setOnClickListener {
+         Intent(requireActivity(), SearchActivity::class.java).also { intent ->
+            startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity()).toBundle())
+         }
+      }
+   }
+
+   private fun getArticleData() {
+      viewModel.getAllArticles().observe(viewLifecycleOwner) { data ->
+         lifecycleScope.launchWhenCreated {
+            launch(Dispatchers.Main) {
+               articleAdapter.loadStateFlow.collectLatest {
+                  if (it.refresh is LoadState.Loading) {
+                     showLoading(true)
+                  } else {
+                     showLoading(false)
+                  }
+               }
+            }
+            setupRecyclerView(data)
+         }
+      }
+   }
+
+   private fun setupRecyclerView(data: PagingData<ArticlesItem>) {
+      articleAdapter.submitData(lifecycle, data)
+
+      binding.rvListArticle.apply {
+         layoutManager = GridLayoutManager(context, 2)
+         adapter = articleAdapter.withLoadStateHeaderAndFooter(
+            footer = LoadingStateAdapter {
+               articleAdapter.retry()
+            },
+            header = LoadingStateAdapter {
+               articleAdapter.retry()
+            }
+         )
+      }
+   }
+
+   private fun showLoading(isLoading: Boolean) {
+      if (isLoading) {
+         binding.viewLoading.root.visibility = View.VISIBLE
+         binding.viewLoading.backgroundLoading.alpha = 1f
+      } else {
+         binding.viewLoading.root.visibility = View.GONE
+      }
    }
 }

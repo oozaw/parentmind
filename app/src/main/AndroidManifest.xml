@@ -8,20 +8,27 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ParentMind"
+        android:theme="@style/SplashTheme"
         tools:targetApi="31">
         <activity
-            android:name=".view.detailvideo.DetailVideoActivity"
+            android:name=".view.search.SearchActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".view.video.detail.DetailVideoActivity"
             android:exported="false" />
         <activity
             android:name=".view.forum.ForumActivity"
             android:exported="false" />
         <activity
-            android:name=".view.video.VideoActivity"
+            android:name=".view.video.main.MainVideoActivity"
             android:exported="false" />
         <activity
             android:name=".view.notification.NotificationActivity"
@@ -55,6 +62,12 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".view.article.main.MainArticleActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name=".view.article.detail.DetailArticleActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

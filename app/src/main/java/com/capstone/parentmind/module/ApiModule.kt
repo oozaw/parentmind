@@ -16,7 +16,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class ApiModule {
    companion object {
-      private const val BASE_URL = ""
+      private const val BASE_URL = BuildConfig.BASE_URL
 
       @Provides
       @Singleton
